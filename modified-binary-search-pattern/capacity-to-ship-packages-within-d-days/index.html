@@ -961,6 +961,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ship_within_days_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-moving-truck-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Moving Truck" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="ship_within_days_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-moving-truck-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Moving Truck" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2554,6 +2588,14 @@ If within D days, try lower capacity; otherwise increase.</p>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="k">return</span> <span class="n">left</span>
 </code></pre></div>
+<h4 id="analogy-the-moving-truck-analogy">Analogy: The "Moving Truck" Analogy<a class="headerlink" href="#analogy-the-moving-truck-analogy" title="Permanent link">&para;</a></h4>
+<p>You're moving apartments. You have a stack of boxes in a fixed order (you can't rearrange them — each box must be loaded in sequence), and you need to transport them using a rental truck. The truck has a weight limit, and you have a limited number of trips allowed.</p>
+<ul>
+<li><strong>The Truck Capacity (Candidate Mid)</strong>: This is the maximum weight the truck can carry per trip. We need to find the minimum capacity that still gets the job done in the allowed trips.</li>
+<li><strong>Fixed Order Loading</strong>: Boxes must be loaded in sequence — you can't skip a heavy box and come back for it later. If the next box exceeds the remaining capacity, you seal the truck and send it off, then start a new trip with that box.</li>
+<li><strong>Feasibility Check</strong>: For a given truck capacity, simulate loading: start with trip 1, add boxes until the next one would exceed capacity, then increment the trip counter and keep going. If total trips ≤ allowed days, this capacity works.</li>
+<li><strong>Binary Search on Answer</strong>: The minimum possible capacity is the heaviest single box. The maximum is the sum of all boxes (one trip). Binary search this range to find the smallest capacity that fits within the trip limit — just like finding the smallest viable truck.</li>
+</ul>
 
 
 

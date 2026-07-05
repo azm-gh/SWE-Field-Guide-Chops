@@ -933,6 +933,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="search_matrix_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-cinema-seat-finder-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Cinema Seat Finder" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="search_matrix_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-cinema-seat-finder-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Cinema Seat Finder" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2544,6 +2578,14 @@ row-major sorted. Standard binary search applies.</p>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>            <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div>
+<h4 id="analogy-the-cinema-seat-finder-analogy">Analogy: The "Cinema Seat Finder" Analogy<a class="headerlink" href="#analogy-the-cinema-seat-finder-analogy" title="Permanent link">&para;</a></h4>
+<p>Imagine a cinema with rows of seats, each row sorted by seat number from left to right. The rows themselves are ordered — row 2 starts where row 1 ends (no gaps). An usher has a single ticket with a seat number and needs to find it fast.</p>
+<ul>
+<li><strong>The Flattened Row (1D Mapping)</strong>: Instead of walking row by row, the usher treats all seats as one continuous line from 1 to total seats. This is the key insight — the 2D grid is really one sorted list in disguise.</li>
+<li><strong>The Row &amp; Col Calculation</strong>: Given a "virtual index" <code>mid</code> in the flattened line, the usher computes <code>row = mid // (seats_per_row)</code> and <code>col = mid % (seats_per_row)</code> to locate the exact physical seat.</li>
+<li><strong>Standard Binary Search</strong>: Once flattened conceptually, it's textbook binary search — compare the seat number at <code>mid</code> with the target, eliminate the wrong half, and repeat.</li>
+<li><strong>Result</strong>: You find the target in O(log(m*n)) time, never needing to scan every seat.</li>
+</ul>
 
 
 

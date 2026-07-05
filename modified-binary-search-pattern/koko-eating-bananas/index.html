@@ -905,6 +905,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="min_eating_speed_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-buffet-speed-check-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Buffet Speed Check" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="min_eating_speed_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-buffet-speed-check-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Buffet Speed Check" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2544,6 +2578,14 @@ increase speed (left = mid + 1). Classical "binary search on answer" pattern.</p
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    <span class="k">return</span> <span class="n">left</span>
 </code></pre></div>
+<h4 id="analogy-the-buffet-speed-check-analogy">Analogy: The "Buffet Speed Check" Analogy<a class="headerlink" href="#analogy-the-buffet-speed-check-analogy" title="Permanent link">&para;</a></h4>
+<p>Imagine you have a huge pile of sliced bread to toast for a party, and only one old toaster that can fit a certain number of slices per batch. You have a strict deadline.</p>
+<ul>
+<li><strong>The Toast Capacity (Speed k)</strong>: This is your candidate eating speed — how many bananas Koko can eat per hour. In our analogy, it's how many bread slices you can toast per batch in the toaster.</li>
+<li><strong>The Piles (Stacks of Bread)</strong>: Each pile is a different size (number of bananas). You must finish one entire pile before moving to the next, just like you must toast all the slices in one stack before starting the next.</li>
+<li><strong>The Feasibility Check</strong>: For a given toaster capacity, you calculate how many toaster cycles each bread stack requires. If the total cycles fit within your available time (h hours), the capacity is feasible — try a smaller one.</li>
+<li><strong>Binary Search on Answer</strong>: Instead of testing every possible toaster capacity from 1 to the biggest stack, you binary search the range. If a mid-sized capacity works, look lower to find the minimal viable toaster; if not, you need a bigger toaster.</li>
+</ul>
 
 
 

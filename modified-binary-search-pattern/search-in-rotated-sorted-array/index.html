@@ -877,6 +877,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="search_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-broken-bookshelf-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Broken Bookshelf" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="search_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-broken-bookshelf-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Broken Bookshelf" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2545,6 +2579,14 @@ endpoints, and search accordingly. This preserves O(log n) time.</p>
 <a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 </code></pre></div>
+<h4 id="analogy-the-broken-bookshelf-analogy">Analogy: The "Broken Bookshelf" Analogy<a class="headerlink" href="#analogy-the-broken-bookshelf-analogy" title="Permanent link">&para;</a></h4>
+<p>Imagine a long bookshelf where all the books are sorted by title. Someone picked up a random chunk of the shelf and moved it to the front, so now the shelf is rotated — there's a "break point" where the sequence resets.</p>
+<ul>
+<li><strong>The Break Point</strong>: This is where the sorted order jumps (e.g., <code>[5, 6, 1, 2, 3]</code> — the break is after 6). Only one side of any midpoint contains this break.</li>
+<li><strong>The Sorted Half Trick</strong>: Pick the middle book. The left side (from <code>left</code> to <code>mid</code>) will be fully sorted if <code>nums[left] &lt;= nums[mid]</code>. Otherwise, the right side is fully sorted. You always know exactly which half is reliably ordered.</li>
+<li><strong>Narrowing the Search</strong>: If the left half is sorted and your target falls within its range, search left. Otherwise search right. Same logic applies symmetrically for a sorted right half.</li>
+<li><strong>Result</strong>: Despite the rotation, you still narrow the search by half each step — giving O(log n) time, just like standard binary search.</li>
+</ul>
 
 
 
