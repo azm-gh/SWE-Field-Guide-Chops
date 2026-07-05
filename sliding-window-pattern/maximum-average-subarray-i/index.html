@@ -682,6 +682,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="find_max_average_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-bus-passengers-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Bus Passengers" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="find_max_average_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-bus-passengers-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Bus Passengers" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2507,8 +2541,8 @@
 
 
 <h1 id="maximum-average-subarray-i">Maximum Average Subarray I<a class="headerlink" href="#maximum-average-subarray-i" title="Permanent link">&para;</a></h1>
-<p><strong>LeetCode:</strong> <a href="https://leetcode.com/problems/maximum-average-subarray-i/">https://leetcode.com/problems/maximum-average-subarray-i/</a></p>
-<p><strong>AlgoMaster Animation:</strong> <a href="https://algomaster.io/animations/dsa/maximum-average-subarray-i">https://algomaster.io/animations/dsa/maximum-average-subarray-i</a></p>
+<p><strong>LeetCode:</strong> <a href="https://leetcode.com/problems/maximum-average-subarray-i/">https://leetcode.com/problems/maximum-average-subarray-i/</a>
+<strong>AlgoMaster Animation:</strong> <a href="https://algomaster.io/animations/dsa/maximum-average-subarray-i">https://algomaster.io/animations/dsa/maximum-average-subarray-i</a></p>
 <h2 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">&para;</a></h2>
 <p>Intuition: Fixed-size sliding window. Since k is constant, we slide a window
 of size k across the array, subtracting the outgoing element and adding the
@@ -2540,6 +2574,16 @@ recalculating from scratch O(n*k).</p>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">window_sum</span><span class="p">)</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="k">return</span> <span class="n">max_sum</span> <span class="o">/</span> <span class="n">k</span>
 </code></pre></div>
+<h4 id="analogy-the-bus-passengers-analogy">Analogy: The "Bus Passengers" Analogy<a class="headerlink" href="#analogy-the-bus-passengers-analogy" title="Permanent link">&para;</a></h4>
+<p>Imagine a bus that can hold exactly <code>k</code> passengers (our fixed window size). As the bus drives along a road (the array of numbers), people stand in a line.</p>
+<p>To find the segment of <code>k</code> consecutive people with the highest average weight, we use a rolling calculation:</p>
+<ul>
+<li><strong>The First Bus Load</strong>: We load the first <code>k</code> people onto the bus at the starting terminal (<code>nums[:k]</code>). We sum up their weights. This is our initial record to beat.</li>
+<li><strong>Driving Forward</strong>: At each subsequent stop along the road, one new person is waiting to get on the bus (<code>nums[i]</code>), and the person who has been on the bus the longest must exit the bus (<code>nums[i - k]</code>).</li>
+<li><strong>Updating the Total (O(1) updates)</strong>: Instead of weighing all <code>k</code> people on the bus from scratch at every stop, we simply take our current total weight, add the weight of the new person getting on, and subtract the weight of the person getting off: <code>window_sum += incoming - outgoing</code>.</li>
+<li><strong>Recording the Record</strong>: We compare this new total weight to our all-time record (<code>max_sum = max(max_sum, window_sum)</code>).</li>
+<li><strong>The Final Average</strong>: After driving to the end of the line, we take the highest total weight found and divide it by <code>k</code> to get the maximum average weight.</li>
+</ul>
 
 
 
