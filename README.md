@@ -1,6 +1,6 @@
-# LeetCode Chops
+# SWE Field Guide Chops
 
-LeetCode solutions organized by algorithmic pattern — each with a **naive** and an **optimized** solution.
+Software engineering solutions organized by algorithmic pattern — each with a **naive** and an **optimized** solution.
 
 ## Patterns
 
@@ -18,16 +18,23 @@ LeetCode solutions organized by algorithmic pattern — each with a **naive** an
 ## Structure
 
 ```
-pattern-name/
-├── why-this-pattern.md      # Intuition guide
-├── problem-name/
-│   └── problem_name.py      # Naive + optimized solutions
+Algorithms & Data Structures/
+├── 1. Two-pointer Approach/
+│   ├── why-this-pattern.md      # Intuition guide
+│   └── problem-name/
+│       └── problem_name.py      # Naive + optimized solutions
+├── 2. Sliding Window Pattern/
+├── ...
+└── DS and Algorithms Quest/
+
+System Design/
+└── High domain overview/
 ```
 
 ## Site
 
 Published with MkDocs + Material theme:  
-https://azm-gh.github.io/leetcodeChops/
+https://azm-gh.github.io/SWE-Field-Guide-Chops/
 
 ### Deploy locally
 

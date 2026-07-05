@@ -2,7 +2,7 @@ import os
 import re
 import ast
 
-BASE = r"C:\leetcodeChops"
+BASE = r"C:\SWE-Field-Guide-Chops"
 DOCS = os.path.join(BASE, "docs")
 
 # Map: pattern folder name -> (doc folder, pattern number, short_pattern_folder)

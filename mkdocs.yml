@@ -1,7 +1,7 @@
-site_name: LeetCode Chops
-site_description: LeetCode problem solutions organized by pattern — naive + optimized
-site_url: https://azm-gh.github.io/leetcodeChops
-repo_url: https://github.com/azm-gh/leetcodeChops
+site_name: SWE Field Guide Chops
+site_description: Software Engineering problem solutions organized by pattern — naive + optimized
+site_url: https://azm-gh.github.io/SWE-Field-Guide-Chops
+repo_url: https://github.com/azm-gh/SWE-Field-Guide-Chops
 theme:
   name: material
   palette:
@@ -25,63 +25,64 @@ markdown_extensions:
       permalink: true
 nav:
   - Home: index.md
-  - 1. Two-pointer Approach:
-    - Overview: two-pointer-approach/index.md
-    - Move Zeroes: two-pointer-approach/move-zeroes.md
-    - Two Sum II: two-pointer-approach/two-sum-ii-input-array-is-sorted.md
-    - 3Sum: two-pointer-approach/3sum.md
-    - Container With Most Water: two-pointer-approach/container-with-most-water.md
-  - 2. Sliding Window Pattern:
-    - Overview: sliding-window-pattern/index.md
-    - Maximum Average Subarray I: sliding-window-pattern/maximum-average-subarray-i.md
-    - Longest Substring (No Repeat): sliding-window-pattern/longest-substring-without-repeating-characters.md
-    - Longest Repeating Char Replacement: sliding-window-pattern/longest-repeating-character-replacement.md
-    - Minimum Window Substring: sliding-window-pattern/minimum-window-substring.md
-  - 3. Modified Binary Search Pattern:
-    - Overview: modified-binary-search-pattern/index.md
-    - Search in Rotated Sorted Array: modified-binary-search-pattern/search-in-rotated-sorted-array.md
-    - Koko Eating Bananas: modified-binary-search-pattern/koko-eating-bananas.md
-    - Search a 2D Matrix: modified-binary-search-pattern/search-a-2d-matrix.md
-    - Capacity To Ship Packages: modified-binary-search-pattern/capacity-to-ship-packages-within-d-days.md
-  - 4. Hashmaps and Hash Sets:
-    - Overview: hashmaps-and-hash-sets/index.md
-    - Find the Duplicate Number: hashmaps-and-hash-sets/find-the-duplicate-number.md
-    - Two Sum: hashmaps-and-hash-sets/two-sum.md
-    - Majority Element: hashmaps-and-hash-sets/majority-element.md
-    - Group Anagrams: hashmaps-and-hash-sets/group-anagrams.md
-    - Longest Consecutive Sequence: hashmaps-and-hash-sets/longest-consecutive-sequence.md
-  - 5. Monotonic Stack / Prefix Sum Pattern:
-    - Overview: monotonic-stack-prefix-sum-pattern/index.md
-    - Find Pivot Index: monotonic-stack-prefix-sum-pattern/find-pivot-index.md
-    - Subarray Sum Equals K: monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k.md
-    - Range Sum Query: monotonic-stack-prefix-sum-pattern/range-sum-query.md
-  - 6. BFS and DFS:
-    - Overview: bfs-and-dfs/index.md
-    - Maximum Depth of Binary Tree: bfs-and-dfs/maximum-depth-of-binary-tree.md
-    - Number of Islands: bfs-and-dfs/number-of-islands.md
-    - Course Schedule: bfs-and-dfs/course-schedule.md
-    - Word Ladder: bfs-and-dfs/word-ladder.md
-  - 7. Memoization (Dynamic Programming):
-    - Overview: memoization-dynamic-programming/index.md
-    - Climbing Stairs: memoization-dynamic-programming/climbing-stairs.md
-    - Coin Change: memoization-dynamic-programming/coin-change.md
-    - Longest Common Subsequence: memoization-dynamic-programming/longest-common-subsequence.md
-    - House Robber: memoization-dynamic-programming/house-robber.md
-  - 8. Heap or Priority Queue:
-    - Overview: heap-priority-queue/index.md
-    - Last Stone Weight: heap-priority-queue/last-stone-weight.md
-    - Kth Largest Element: heap-priority-queue/kth-largest-element-in-an-array.md
-    - Top K Frequent Elements: heap-priority-queue/top-k-frequent-elements.md
+  - Algorithms & Data Structures:
+    - 1. Two-pointer Approach:
+      - Overview: two-pointer-approach/index.md
+      - Move Zeroes: two-pointer-approach/move-zeroes.md
+      - Two Sum II: two-pointer-approach/two-sum-ii-input-array-is-sorted.md
+      - 3Sum: two-pointer-approach/3sum.md
+      - Container With Most Water: two-pointer-approach/container-with-most-water.md
+    - 2. Sliding Window Pattern:
+      - Overview: sliding-window-pattern/index.md
+      - Maximum Average Subarray I: sliding-window-pattern/maximum-average-subarray-i.md
+      - Longest Substring (No Repeat): sliding-window-pattern/longest-substring-without-repeating-characters.md
+      - Longest Repeating Char Replacement: sliding-window-pattern/longest-repeating-character-replacement.md
+      - Minimum Window Substring: sliding-window-pattern/minimum-window-substring.md
+    - 3. Modified Binary Search Pattern:
+      - Overview: modified-binary-search-pattern/index.md
+      - Search in Rotated Sorted Array: modified-binary-search-pattern/search-in-rotated-sorted-array.md
+      - Koko Eating Bananas: modified-binary-search-pattern/koko-eating-bananas.md
+      - Search a 2D Matrix: modified-binary-search-pattern/search-a-2d-matrix.md
+      - Capacity To Ship Packages: modified-binary-search-pattern/capacity-to-ship-packages-within-d-days.md
+    - 4. Hashmaps and Hash Sets:
+      - Overview: hashmaps-and-hash-sets/index.md
+      - Find the Duplicate Number: hashmaps-and-hash-sets/find-the-duplicate-number.md
+      - Two Sum: hashmaps-and-hash-sets/two-sum.md
+      - Majority Element: hashmaps-and-hash-sets/majority-element.md
+      - Group Anagrams: hashmaps-and-hash-sets/group-anagrams.md
+      - Longest Consecutive Sequence: hashmaps-and-hash-sets/longest-consecutive-sequence.md
+    - 5. Monotonic Stack / Prefix Sum Pattern:
+      - Overview: monotonic-stack-prefix-sum-pattern/index.md
+      - Find Pivot Index: monotonic-stack-prefix-sum-pattern/find-pivot-index.md
+      - Subarray Sum Equals K: monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k.md
+      - Range Sum Query: monotonic-stack-prefix-sum-pattern/range-sum-query.md
+    - 6. BFS and DFS:
+      - Overview: bfs-and-dfs/index.md
+      - Maximum Depth of Binary Tree: bfs-and-dfs/maximum-depth-of-binary-tree.md
+      - Number of Islands: bfs-and-dfs/number-of-islands.md
+      - Course Schedule: bfs-and-dfs/course-schedule.md
+      - Word Ladder: bfs-and-dfs/word-ladder.md
+    - 7. Memoization (Dynamic Programming):
+      - Overview: memoization-dynamic-programming/index.md
+      - Climbing Stairs: memoization-dynamic-programming/climbing-stairs.md
+      - Coin Change: memoization-dynamic-programming/coin-change.md
+      - Longest Common Subsequence: memoization-dynamic-programming/longest-common-subsequence.md
+      - House Robber: memoization-dynamic-programming/house-robber.md
+    - 8. Heap or Priority Queue:
+      - Overview: heap-priority-queue/index.md
+      - Last Stone Weight: heap-priority-queue/last-stone-weight.md
+      - Kth Largest Element: heap-priority-queue/kth-largest-element-in-an-array.md
+      - Top K Frequent Elements: heap-priority-queue/top-k-frequent-elements.md
+    - DS and Algorithms Quest:
+      - Overview: ds-and-algorithms-quest/index.md
+      - Array 1:
+        - Concatenation of Array: ds-and-algorithms-quest/array_1/concatenation-of-array.md
+        - Shuffle the Array: ds-and-algorithms-quest/array_1/shuffle-the-array.md
+        - Max Consecutive Ones: ds-and-algorithms-quest/array_1/max-consecutive-ones.md
+      - Array 2:
+        - Set Mismatch: ds-and-algorithms-quest/array_2/set-mismatch.md
+        - Smaller Numbers Than Current: ds-and-algorithms-quest/array_2/smaller-numbers-than-current.md
+        - Find Disappeared Numbers: ds-and-algorithms-quest/array_2/find-disappeared-numbers.md
   - System Design:
     - Overview: system-design/index.md
     - High Level Overview: system-design/high-level-overview.md
-  - DS and Algorithms Quest:
-    - Overview: ds-and-algorithms-quest/index.md
-    - Array 1:
-      - Concatenation of Array: ds-and-algorithms-quest/array_1/concatenation-of-array.md
-      - Shuffle the Array: ds-and-algorithms-quest/array_1/shuffle-the-array.md
-      - Max Consecutive Ones: ds-and-algorithms-quest/array_1/max-consecutive-ones.md
-    - Array 2:
-      - Set Mismatch: ds-and-algorithms-quest/array_2/set-mismatch.md
-      - Smaller Numbers Than Current: ds-and-algorithms-quest/array_2/smaller-numbers-than-current.md
-      - Find Disappeared Numbers: ds-and-algorithms-quest/array_2/find-disappeared-numbers.md
