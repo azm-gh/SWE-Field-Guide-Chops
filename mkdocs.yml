@@ -83,6 +83,17 @@ nav:
         - Set Mismatch: ds-and-algorithms-quest/array_2/set-mismatch.md
         - Smaller Numbers Than Current: ds-and-algorithms-quest/array_2/smaller-numbers-than-current.md
         - Find Disappeared Numbers: ds-and-algorithms-quest/array_2/find-disappeared-numbers.md
+  - Python:
+    - Python Core Concepts: python/Python Core Concepts.md
+    - Python Collections Explained: python/Python Collections Explained.md
+    - Python Async Threading Multiprocessing: python/Python Async Threading Multiprocessing.md
+    - Python Dependency Injection Guide: python/Python Dependency Injection Guide.md
+    - Python self and Instance Methods: python/Python self and Instance Methods.md
+    - Python Iterators and Generators: python/Python Iterators and Generators.md
+    - Python Binary Search Template: python/Python Binary Search Template.md
+    - Python Logging Best Practices: python/Python Logging Best Practices.md
+    - FastAPI Pydantic Schema Validation: python/FastAPI Pydantic Schema Validation.md
+    - FastAPI for AI Projects: python/FastAPI for AI Projects.md
   - System Design:
     - Overview: system-design/index.md
     - High Level Overview: system-design/high-level-overview.md
