@@ -94,6 +94,9 @@ nav:
     - Python Logging Best Practices: python/Python Logging Best Practices.md
     - FastAPI Pydantic Schema Validation: python/FastAPI Pydantic Schema Validation.md
     - FastAPI for AI Projects: python/FastAPI for AI Projects.md
+  - Other:
+    - Relevant Links:
+      - Matklad's Links: other/relevant-links/matklad-links.md
   - System Design:
     - Overview: system-design/index.md
     - High Level Overview: system-design/high-level-overview.md
