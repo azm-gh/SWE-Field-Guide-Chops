@@ -515,6 +515,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="two_sum_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-gift-card-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Gift Card" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2479,6 +2496,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="two_sum_optimized — Optimized">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analogy-the-gift-card-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analogy: The "Gift Card" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2541,6 +2575,16 @@ left pointer right (increase sum); if too large, move the right pointer left
 <a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>            <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">return</span> <span class="p">[]</span>
 </code></pre></div>
+<h4 id="analogy-the-gift-card-analogy">Analogy: The "Gift Card" Analogy<a class="headerlink" href="#analogy-the-gift-card-analogy" title="Permanent link">&para;</a></h4>
+<p>Imagine you have a gift card for exactly $100 (your target), and you are looking at a catalog of items where the prices are listed in order from cheapest to most expensive (your sorted numbers array). You have to buy exactly two items, and you want to use exactly the full $100.</p>
+<p>Here is how you would use your fingers to find the perfect two items:</p>
+<ul>
+<li><strong>The Starting Point</strong>: You place your left finger on the absolute cheapest item (index 0) and your right finger on the absolute most expensive item (index <code>len(numbers) - 1</code>).</li>
+<li><strong>Checking the Price (curr)</strong>: You add the prices under your two fingers together.</li>
+<li><strong>Too Cheap (curr &lt; target)</strong>: If your total is, say, $80, you need to spend more money. Moving your right finger is useless because it would only point to something cheaper, lowering your total even more. The only logical move is to slide your left finger up to the next slightly more expensive item (<code>left += 1</code>).</li>
+<li><strong>Too Expensive (curr &gt; target)</strong>: If your total is $120, you went over budget. Moving your left finger to a more expensive item will only make things worse. You have to lower your total, so you slide your right finger down to a slightly cheaper item (<code>right -= 1</code>).</li>
+<li><strong>The Perfect Match (curr == target)</strong>: You hit exactly $100! You return the item numbers (adding +1 because the problem asks for 1-based indexing instead of 0-based).</li>
+</ul>
 
 
 
