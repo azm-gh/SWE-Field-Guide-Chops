@@ -1,0 +1,3503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A logging tutorial.At some point, print statements aren't enough. When that time comes in Python, you should reach for the builtin logging package. It may be old (committed in 2002!), but it is the">
+      
+      
+        <meta name="author" content="['[[mCoding]]']">
+      
+      
+        <link rel="canonical" href="https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Logging%20Best%20Practices/">
+      
+      
+        <link rel="prev" href="../Python%20Binary%20Search%20Template/">
+      
+      
+        <link rel="next" href="../FastAPI%20Pydantic%20Schema%20Validation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Modern Python logging - SWE Field Guide Chops</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#transcript" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SWE Field Guide Chops" class="md-header__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SWE Field Guide Chops
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Modern Python logging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/azm-gh/SWE-Field-Guide-Chops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SWE Field Guide Chops" class="md-nav__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SWE Field Guide Chops
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/azm-gh/SWE-Field-Guide-Chops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms & Data Structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms & Data Structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Two-pointer Approach
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Two-pointer Approach
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/move-zeroes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Move Zeroes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/two-sum-ii-input-array-is-sorted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Two Sum II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/3sum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3Sum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/container-with-most-water/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container With Most Water
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sliding Window Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sliding Window Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/maximum-average-subarray-i/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maximum Average Subarray I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/longest-substring-without-repeating-characters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Substring (No Repeat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/longest-repeating-character-replacement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Repeating Char Replacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/minimum-window-substring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimum Window Substring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Modified Binary Search Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Modified Binary Search Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/search-in-rotated-sorted-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search in Rotated Sorted Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/koko-eating-bananas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Koko Eating Bananas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/search-a-2d-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search a 2D Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/capacity-to-ship-packages-within-d-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capacity To Ship Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Hashmaps and Hash Sets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Hashmaps and Hash Sets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/find-the-duplicate-number/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find the Duplicate Number
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/two-sum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Two Sum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/majority-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Majority Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/group-anagrams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Anagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/longest-consecutive-sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Consecutive Sequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Monotonic Stack / Prefix Sum Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Monotonic Stack / Prefix Sum Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/find-pivot-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find Pivot Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subarray Sum Equals K
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/range-sum-query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Range Sum Query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. BFS and DFS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. BFS and DFS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/maximum-depth-of-binary-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maximum Depth of Binary Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/number-of-islands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Number of Islands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/course-schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/word-ladder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word Ladder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Memoization (Dynamic Programming)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Memoization (Dynamic Programming)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/climbing-stairs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Climbing Stairs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/coin-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coin Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/longest-common-subsequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Common Subsequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/house-robber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    House Robber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Heap or Priority Queue
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Heap or Priority Queue
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/last-stone-weight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Last Stone Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/kth-largest-element-in-an-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kth Largest Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/top-k-frequent-elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top K Frequent Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DS and Algorithms Quest
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DS and Algorithms Quest
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_2" id="__nav_2_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Array 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Array 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/concatenation-of-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concatenation of Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/shuffle-the-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle the Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/max-consecutive-ones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Max Consecutive Ones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_3" id="__nav_2_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Array 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Array 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/set-mismatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set Mismatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/smaller-numbers-than-current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smaller Numbers Than Current
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/find-disappeared-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find Disappeared Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Core%20Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Core Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Collections%20Explained/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Collections Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Async%20Threading%20Multiprocessing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Async Threading Multiprocessing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Dependency%20Injection%20Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Dependency Injection Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20self%20and%20Instance%20Methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python self and Instance Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Iterators%20and%20Generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Iterators and Generators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Binary%20Search%20Template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Binary Search Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Logging Best Practices
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Logging Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transcript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transcript
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transcript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-sponsorship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-sponsorship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-is-the-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging is the standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basicconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        basicConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dictConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-complete-logging-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        the complete logging picture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-log-to-stdout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: log to stdout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-jsonyaml-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging JSON/YAML config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-errors-to-stdedd-and-all-to-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: errors to stdedd and all to file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-context-with-the-extra-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra context with the extra param
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-glaring-flaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A glaring flaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-off-the-main-thread-with-queuehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log off the main thread with QueueHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library logging?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging4p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging4p
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thanks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks!
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FastAPI%20Pydantic%20Schema%20Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI Pydantic Schema Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FastAPI%20for%20AI%20Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI for AI Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-design/high-level-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Level Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#transcript" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transcript
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transcript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-sponsorship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-sponsorship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-is-the-standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging is the standard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basicconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        basicConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dictConfig
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-complete-logging-picture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        the complete logging picture
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-log-to-stdout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: log to stdout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-jsonyaml-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging JSON/YAML config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-errors-to-stdedd-and-all-to-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: errors to stdedd and all to file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JSON logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extra-context-with-the-extra-param" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extra context with the extra param
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-glaring-flaw" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A glaring flaw
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-off-the-main-thread-with-queuehandler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log off the main thread with QueueHandler
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#success" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Success!
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#library-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Library logging?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging4p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        logging4p
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#thanks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Thanks!
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Python Logging Best Practices</h1>
+
+<p><img alt="" src="https://www.youtube.com/watch?v=9L77QExPmI0" /></p>
+<p>A logging tutorial.  </p>
+<p>At some point, print statements aren't enough. When that time comes in Python, you should reach for the builtin logging package. It may be old (committed in 2002!), but it is the standard in Python. Unfortunately though, it being so old means that it's full of stuff you shouldn't use, it doesn't follow modern conventions like PEP8 coding style, and many tutorials are vastly outdated. If you'd like to understand the modern picture of logging in Python, then this video is for you.  </p>
+<p>― mCoding with James Murphy (https://mcoding.io)  </p>
+<p>Source code: https://github.com/mCodingLLC/VideosSampleCode<br />
+logging docs: https://docs.python.org/3/library/logging.html<br />
+Make your own diagrams: https://excalidraw.com/  </p>
+<p>Local Elevator by Kevin MacLeod is licensed under a Creative Commons Attribution 4.0 license. https://creativecommons.org/licenses/by/4.0/  </p>
+<p>CHAPTERS<br />
+---------------------------------------------------<br />
+0:00 Intro<br />
+0:34 Self-sponsorship<br />
+0:48 logging is the standard<br />
+1:21 basicConfig<br />
+2:08 dictConfig<br />
+2:44 the complete logging picture<br />
+7:51 Example: log to stdout<br />
+9:37 logging JSON/YAML config<br />
+10:44 Example: errors to stdedd and all to file<br />
+12:37 JSON logs<br />
+15:46 Extra context with the extra param<br />
+16:13 Custom filter<br />
+17:10 A glaring flaw<br />
+17:44 Log off the main thread with QueueHandler<br />
+19:15 Success!<br />
+19:26 Library logging?<br />
+20:16 logging4p<br />
+21:02 Thanks!</p>
+<h2 id="transcript">Transcript<a class="headerlink" href="#transcript" title="Permanent link">&para;</a></h2>
+<h3 id="intro">Intro<a class="headerlink" href="#intro" title="Permanent link">&para;</a></h3>
+<p><strong>0:00</strong> · Welcome back, aspiring professional Python devs to mCoding, I'm James Murphy.</p>
+<p><strong>0:04</strong> · Let's learn how to set up logging in your python application, the modern way.</p>
+<p><strong>0:09</strong> · That means we're going to learn to stop doing this, and start doing this instead.</p>
+<p><strong>0:15</strong> · As always with so-called "best practices" these are general guidelines that work for most use cases.</p>
+<p><strong>0:21</strong> · However, you know what's best for your code way better than I do, so if you have a good reason, then do what you know is right.</p>
+<p><strong>0:27</strong> · Don't blindly follow this advice if it doesn't work for you.</p>
+<p><strong>0:31</strong> · With that said, let's get going ... right after I sponsor myself.</p>
+<h3 id="self-sponsorship">Self-sponsorship<a class="headerlink" href="#self-sponsorship" title="Permanent link">&para;</a></h3>
+<p><strong>0:34</strong> · At mCoding, we do code reviews, consulting, and professional training.</p>
+<p><strong>0:38</strong> · Do you have a problem with your code?</p>
+<p><strong>0:39</strong> · Worried about your architecture?</p>
+<p><strong>0:41</strong> · Or do you just need some extra dev hours?</p>
+<p><strong>0:43</strong> · Why not make me part of your team?</p>
+<p><strong>0:45</strong> · Anyway let's get back to logging.</p>
+<p><strong>0:47</strong> · The built-in logging package is very old and full of stuff that you shouldn't use.</p>
+<h3 id="logging-is-the-standard">logging is the standard<a class="headerlink" href="#logging-is-the-standard" title="Permanent link">&para;</a></h3>
+<p><strong>0:53</strong> · It doesn't follow PEP8, the docs are a mess, and many tutorials are outdated or quite frankly written by people who obviously don't use it.</p>
+<p><strong>1:01</strong> · But for all its quirks, the built-in logging package is the de-facto standard for logging in Python.</p>
+<p><strong>1:06</strong> · It doesn't matter if you're using a cloud provider or just developing a local application, the standard is the built-in logging package.</p>
+<p><strong>1:12</strong> · But do you really even need logging at all?</p>
+<p><strong>1:15</strong> · Hey man, you came to me.</p>
+<p><strong>1:17</strong> · If your app doesn't need logging, that's up to you, I'm just here to show you what's possible.</p>
+<h3 id="basicconfig">basicConfig<a class="headerlink" href="#basicconfig" title="Permanent link">&para;</a></h3>
+<p><strong>1:21</strong> · All right, let's see how to get started.</p>
+<p><strong>1:24</strong> · You might think you just import logging, make a logger, set it up with a basic config, and then get to logging with your messages.</p>
+<p><strong>1:30</strong> · When you run the code, based off the log level you set, you see those level messages and worse.</p>
+<p><strong>1:36</strong> · And I wouldn't blame you if you've been doing it this way.</p>
+<p><strong>1:39</strong> · In the most basic cases this is totally fine, but I don't really recommend doing it this way.</p>
+<p><strong>1:45</strong> · Why? Well, if you care to do logging at all you probably want to log to at least two different places, like to stdout and also to a file.</p>
+<p><strong>1:53</strong> · Or you want to log higher priority things like errors and exceptions differently, maybe you want to send an email if there's an exception thrown in prod?</p>
+<p><strong>2:01</strong> · You can manually make handlers and filters and add them to your loggers, but, trust me, just don't do it that way.</p>
+<h3 id="dictconfig">dictConfig<a class="headerlink" href="#dictconfig" title="Permanent link">&para;</a></h3>
+<p><strong>2:08</strong> · Instead, use dictConfig.</p>
+<p><strong>2:11</strong> · For some reason dictConfig is hidden away in this logging.config submodule, and not so much as mentioned in the main logging docs.</p>
+<p><strong>2:20</strong> · As the name suggests, this lets you configure logging via a dictionary that explicitly lists all of the necessary components of your logging setup, namely the filters, formatters, handlers, and loggers.</p>
+<p><strong>2:32</strong> · The basic config hides these objects and their relationships from you, which makes for a really slick one-liner in the most basic case, but for more useful logging setups I find it's much clearer to list them explicitly.</p>
+<h3 id="the-complete-logging-picture">the complete logging picture<a class="headerlink" href="#the-complete-logging-picture" title="Permanent link">&para;</a></h3>
+<p><strong>2:44</strong> · It can get really confusing if you don't have a good mental model for what these things actually do.</p>
+<p><strong>2:48</strong> · So here's the one picture to keep in mind to see how it all fits together.</p>
+<p><strong>2:53</strong> · Loggers are the things that you actually use in your code.</p>
+<p><strong>2:56</strong> · They have a ".info" and you can call logger.info to log a message, logger.debug to log a debug message, logger.exception to log the in-flight exception, etc.</p>
+<p><strong>3:06</strong> · That creates a log record, which is an object that contains all kinds of useful contextual information.</p>
+<p><strong>3:12</strong> · Things like the message and severity, the current time, the current thread or async task, the location in the source code, and so on.</p>
+<p><strong>3:20</strong> · Every logger can set a level to drop all messages below a certain severity, and optionally some filters to drop or alter messages along the way.</p>
+<p><strong>3:28</strong> · So you could do something like drop all messages that begin with "some annoying string."</p>
+<p><strong>3:32</strong> · Or you could do something more sophisticated like sensor private user data that isn't supposed to appear in logs.</p>
+<p><strong>3:39</strong> · The logger then passes these log records off to each of their handlers one at a time.</p>
+<p><strong>3:45</strong> · Handlers tell you how and where to log a record, like to stdout, to a file. over email. or to a commercial log service.</p>
+<p><strong>3:53</strong> · Each handler receives the log record and, just like for loggers, the handler has a level and some filters that allow it to drop or alter the message along the way.</p>
+<p><strong>4:02</strong> · if a record is dropped by a handler, it still passes on to the rest of the handlers.</p>
+<p><strong>4:06</strong> · But if it was dropped by the logger itself, then it's dropped for good.</p>
+<p><strong>4:12</strong> · Assuming the message passes through the levels and filters, when it comes time for the handler to actually write the log message, it needs to write text.</p>
+<p><strong>4:19</strong> · But currently this is a Python object. So each handler has a formatter that it uses to convert the log record object into a string to be sent out.</p>
+<p><strong>4:28</strong> · The formatter is what lets you customize what an individual message looks like.</p>
+<p><strong>4:32</strong> · Like is it the log level and then the message? Or level, then timestamp, then message?</p>
+<p><strong>4:37</strong> · Or maybe you write JSON, or maybe you write some other format.</p>
+<p><strong>4:41</strong> · Formatters are typically where you see the most customization because it's the formatter that selects which data from the log record to actually include in the message and that depends a lot on your specific use case and what you want to see in your logs.</p>
+<p><strong>4:53</strong> · And this is almost the complete picture.</p>
+<p><strong>4:56</strong> · Except this is the picture for the root logger, the root as in the root of the tree of loggers.</p>
+<p><strong>5:06</strong> · Loggers are accessed and created by name, and if you split the name by dots then you end up with a tree of loggers.</p>
+<p><strong>5:13</strong> · So the A.X logger is a child of the A logger, which is a child of the root.</p>
+<p><strong>5:18</strong> · By default, once a child's done handling a log record, it passes that record up to its parent.</p>
+<p><strong>5:23</strong> · So if this log record was generated down here in the A.X logger, all of A.X's handlers would run, then it would propagate up to A, and all of A's handlers would run, then it would propagate up to the root and all of the roots handlers would run.</p>
+<p><strong>5:38</strong> · This is done to make it easier for users to disable messages from whole subsystems just by disabling certain loggers.</p>
+<p><strong>5:45</strong> · Once again, if a record is dropped by a handler it will continue moving on, to include propagating up to the parent.</p>
+<p><strong>5:51</strong> · But if it's dropped by a logger, then it stops and doesn't propagate.</p>
+<p><strong>5:55</strong> · But slow down there, this is way more flexibility than you would usually need.</p>
+<p><strong>6:01</strong> · Having all these handlers and filters and propagation at different levels is unnecessarily complex for most use cases.</p>
+<p><strong>6:08</strong> · And it often leads to subtly broken configs.</p>
+<p><strong>6:11</strong> · So here's what I recommend.</p>
+<p><strong>6:13</strong> · See all these non-root handlers? Delete them.</p>
+<p><strong>6:17</strong> · Unless you've got a good reason, put all handlers on the root logger.</p>
+<p><strong>6:21</strong> · This is simpler, but also having all handlers on the root logger ensures that any messages generated by third-party libraries get logged and formatted the same way as messages generated by your own application.</p>
+<p><strong>6:33</strong> · Filters? Same deal.</p>
+<p><strong>6:35</strong> · There's a decent chance you don't need any filters at all, but if you do put them all on the root logger or their handlers.</p>
+<p><strong>6:43</strong> · Leave propagation turned on, which is the default, so that all messages propagate up to the root logger.</p>
+<p><strong>6:49</strong> · However, don't use the root logger in your code.</p>
+<p><strong>6:55</strong> · If you use any of the top-level logging functions like logging.info, this uses is the root logger.</p>
+<p><strong>7:00</strong> · So don't use any of those functions.</p>
+<p><strong>7:04</strong> · Make sure to use your own logger, which you get by using logging.getLogger and passing in the name of the logger that you want.</p>
+<p><strong>7:10</strong> · This will create the logger first if it doesn't already exist, then you can use your logger.info instead of logging.info.</p>
+<p><strong>7:18</strong> · And remember, your logger doesn't have any handlers on it.</p>
+<p><strong>7:20</strong> · We're depending on propagation to send all events up to the root logger and have the root logger actually handle the events.</p>
+<p><strong>7:27</strong> · If you have a small- to medium-sized application, a single non-root logger is all you need.</p>
+<p><strong>7:31</strong> · If you have a very large application, then you should make one non-root logger for each major subcomponent of your application.</p>
+<p><strong>7:39</strong> · You definitely don't need a logger for every file.</p>
+<p><strong>7:41</strong> · That'd be a waste because these are globals that live for the entire life of the program.</p>
+<p><strong>7:46</strong> · With that all in mind, let's get back to configuring logging for a few common setups using dictConfig.</p>
+<h3 id="example-log-to-stdout">Example: log to stdout<a class="headerlink" href="#example-log-to-stdout" title="Permanent link">&para;</a></h3>
+<p><strong>7:51</strong> · As a baseline let's just have a simple config that logs everything to stdout.</p>
+<p><strong>7:55</strong> · If you're ever confused about the config, draw it out like this and then use the picture to fill in the config.</p>
+<p><strong>8:02</strong> · This "version" is required and the only valid value is 1.</p>
+<p><strong>8:05</strong> · This is so that they can change everything in the future without breaking old code.</p>
+<p><strong>8:08</strong> · "disable_existing_loggers" does what it says, it disables anything that's not explicitly listed in this config.</p>
+<p><strong>8:14</strong> · I'm going to go ahead and set this to false so that I can get log messages from third-party code.</p>
+<p><strong>8:20</strong> · No filters in this configuration, so let's just delete that.</p>
+<p><strong>8:25</strong> · Next define a formatter named "simple" and give it a simple format string.</p>
+<p><strong>8:29</strong> · We didn't specify what class this formatter is, so by default it just uses the built-in logging.Formatter.</p>
+<p><strong>8:35</strong> · It accepts the format string like this, using this kind of weird printf-style format string.</p>
+<p><strong>8:40</strong> · Yes it's kind of weird but just deal with it or, foreshadowing, wait a minute and we'll see a better way.</p>
+<p><strong>8:49</strong> · If you want to customize your own format you can find a list of all the available variables in the logging documentation.</p>
+<p><strong>8:55</strong> · Next we need to define the single stdout handler, so we create this single handler named "stdout" and set our "simple" formatter as the formatter for this handler.</p>
+<p><strong>9:06</strong> · In order to get it to actually log to stdout, we set its class to the built-in logging stream handler with a stream of sys.stdout.</p>
+<p><strong>9:14</strong> · The "ext://" slash here means "external", as in this is a variable that's defined outside of this config.</p>
+<p><strong>9:22</strong> · And voila! In just 16 lines we've configured what the basic config did in one line.</p>
+<p><strong>9:29</strong> · I know, I know, but keep in mind this more of verbose style is going to be a lot clearer when we have more going on.</p>
+<p><strong>9:35</strong> · So stick with me.</p>
+<h3 id="logging-jsonyaml-config">logging JSON/YAML config<a class="headerlink" href="#logging-jsonyaml-config" title="Permanent link">&para;</a></h3>
+<p><strong>9:37</strong> · Despite the fact that we're using dictConfig, that doesn't mean that we need to keep the logging configuration as a literal dictionary in our Python source.</p>
+<p><strong>9:45</strong> · Nothing wrong with that, but many find it convenient to keep the logging config in a separate file in JSON or YAML format.</p>
+<p><strong>9:52</strong> · Personally I prefer to keep my config in JSON, so go ahead and create a JSON version of your config, then load that JSON when when your application starts.</p>
+<p><strong>10:01</strong> · If you wanted to use YAML instead, it would look basically the same except of course you would have a YAML config and you would "import yaml" and do a YAML load instead of a JSON load.</p>
+<p><strong>10:10</strong> · Let's bring those side by side just so you can see the two configs.</p>
+<p><strong>10:14</strong> · Obviously YAML is a lot more condensed, but I find it to be a lot more error-prone as well.</p>
+<p><strong>10:19</strong> · And also there's no YAML parser built into Python, whereas there is a built-in JSON parser.</p>
+<p><strong>10:25</strong> · So if you wanted to, you would have to pull that in as a dependency.</p>
+<p><strong>10:28</strong> · "pyyaml" is a popular choice.</p>
+<p><strong>10:31</strong> · Keeping the log config in a separate file also allows you to let your users adjust the logging config to their preference.</p>
+<p><strong>10:36</strong> · You know, if you trust your users to do that kind of thing.</p>
+<h3 id="example-errors-to-stdedd-and-all-to-file">Example: errors to stdedd and all to file<a class="headerlink" href="#example-errors-to-stdedd-and-all-to-file" title="Permanent link">&para;</a></h3>
+<p><strong>10:44</strong> · Second setup. Let's modify the config so that errors go to stderr, and then all logs go to a file.</p>
+<p><strong>10:51</strong> · Change the "stdout" handler to "stderr" and set its level to "WARNING".</p>
+<p><strong>10:57</strong> · Then, create a new handler and set its class to a RotatingFileHandler.</p>
+<p><strong>11:01</strong> · A rotating file handler keeps appending logs to a file until it reaches a certain size, in this case 10 kilobytes.</p>
+<p><strong>11:08</strong> · After it reaches 10 kilobytes, it creates a backup and starts a new file.</p>
+<p><strong>11:12</strong> · After three backups it starts deleting the oldest one.</p>
+<p><strong>11:16</strong> · 10 kilobytes is a pretty small limit, this is just so that you can see the rollover happen.</p>
+<p><strong>11:20</strong> · You probably want to pick a few megabytes.</p>
+<p><strong>11:35</strong> · After running the script a bunch of times, you can see it eventually created this "my_app.log.1" and then started using "my_app.log" again.</p>
+<p><strong>11:43</strong> · We're still using the "simple" formatter here.</p>
+<p><strong>11:45</strong> · But since we're saving to a log file, why don't we include some extra details?</p>
+<p><strong>11:49</strong> · We accomplish that by adding this new "detailed" formatter and setting it as the formatter for the "file" handler.</p>
+<p><strong>11:55</strong> · We include much more information in the format string, and we're also showing off the "datefmt" format here, which allows us to customize how dates are printed.</p>
+<p><strong>12:02</strong> · Pro tip: use an ISO-8601-compliant format and include the timezone. Trust me.</p>
+<p><strong>12:09</strong> · This way our log contains a lot more useful contextual information.</p>
+<p><strong>12:13</strong> · For a lot of applications, this is a great place to stop.</p>
+<p><strong>12:17</strong> · But, if you really care about the quality of your log data, then I really suggest making one crucial change.</p>
+<p><strong>12:25</strong> · Take a look at this log file.</p>
+<p><strong>12:26</strong> · Glancing over it I can visually distinguish different messages from each other, but notice that we have tracebacks in here.</p>
+<p><strong>12:34</strong> · And what if log messages had newlines in them?</p>
+<h3 id="json-logs">JSON logs<a class="headerlink" href="#json-logs" title="Permanent link">&para;</a></h3>
+<p><strong>12:37</strong> · If I wanted to parse this programmatically I'd need to be able to parse back out all of the data that I put into it.</p>
+<p><strong>12:42</strong> · But it's kind of just in free-form text with newlines that could be anywhere at this point.</p>
+<p><strong>12:47</strong> · That's kind of intractable.</p>
+<p><strong>12:50</strong> · The solution? Store persistent logs in JSON format, so that they can be parsed easily later on.</p>
+<p><strong>12:56</strong> · This is a change in how to convert a log record into a string, so that's the job of the formatter, we need a JSON formatter.</p>
+<p><strong>13:04</strong> · But oh wait, there's no built-in logging JSON formatter.</p>
+<p><strong>13:10</strong> · There are a few you can pip install, but let's just write our own.</p>
+<p><strong>13:13</strong> · Supposing we did, you'd think you'd be able to just set the "class" key here and then pass in whatever arguments here, and those will be keyword arguments to the constructor.</p>
+<p><strong>13:23</strong> · That's what's happening here with the handler, right?</p>
+<p><strong>13:26</strong> · Uhh, nope.</p>
+<p><strong>13:27</strong> · You can use your own class here using the "class" keyword, but if you do then all of the keys are hardcoded to be the ones that the built-in uses/ So I could use "format" and "datefmt", but I couldn't create my own "fmt_keys".</p>
+<p><strong>13:44</strong> · Why is it like this way? Great question! Moving on.</p>
+<p><strong>13:48</strong> · Change "class" to "()" and then it will do what you actually want: call this and pass this as a keyword argument.</p>
+<p><strong>13:57</strong> · You'd have to do the same thing anywhere else in the config, like if I made my own custom handler that didn't have the same interface as the built-in one.</p>
+<p><strong>14:05</strong> · Okay well with that weird road bump out of the way, let's continue.</p>
+<p><strong>14:08</strong> · So we're going to pass in these format keys, which is going to be a dictionary where the key is the key that I want to appear in the log message, and the value here, like "levelname", is the variable that we're going to look up from the log record.</p>
+<p><strong>14:24</strong> · Okay so let's go ahead and write this class.</p>
+<p><strong>14:27</strong> · We're in a new file here and we just inherit from the built-in loging Formatter.</p>
+<p><strong>14:31</strong> · Nothing special in the init, we just store the format keys that we get from the config.</p>
+<p><strong>14:36</strong> · Then we need to define this "format" function.</p>
+<p><strong>14:38</strong> · This is a thing that takes the record and goes to a string.</p>
+<p><strong>14:41</strong> · I'm using "@override" here to indicate that we're overriding something from the parent class.</p>
+<p><strong>14:45</strong> · It's not strictly necessary, but it's a good habit to get into marking these things.</p>
+<p><strong>14:49</strong> · All we do is extract out the record data into a dictionary and then use the "json" module to dump that to a string.</p>
+<p><strong>14:56</strong> · As far as actually extracting those fields goes, it's pretty simple.</p>
+<p><strong>14:59</strong> · Regardless of the config, I chose to include the message and a timestamp in ISO format in UTC timezone.</p>
+<p><strong>15:07</strong> · We pull in any exception data if it's present using some parent methods in order to extract things out nicely.</p>
+<p><strong>15:13</strong> · And for the rest of the keys we just grab them from the attributes of the record.</p>
+<p><strong>15:17</strong> · It's pretty straightforward and you could probably do whatever you want here.</p>
+<p><strong>15:21</strong> · And donzo! Update the config to use the new JSON formatter and we're good to go.</p>
+<p><strong>15:28</strong> · Check our log file and we see nicely formatted JSON.</p>
+<p><strong>15:32</strong> · A slight warning though, this file is not valid JSON.</p>
+<p><strong>15:35</strong> · Each line is valid JSON.</p>
+<p><strong>15:37</strong> · This format is called JSON Lines and the common file extension is ".jsonl".</p>
+<p><strong>15:42</strong> · So to parse it you just read the file line by line and parse each line as JSON.</p>
+<h3 id="extra-context-with-the-extra-param">Extra context with the extra param<a class="headerlink" href="#extra-context-with-the-extra-param" title="Permanent link">&para;</a></h3>
+<p><strong>15:47</strong> · And double pro-tip: now that we're outputting JSON, it's actually really easy to add lots of extra contextual information.</p>
+<p><strong>15:54</strong> · To do this we can just use the "extra" argument in one of our log calls.</p>
+<p><strong>15:58</strong> · Give it a dictionary of extra information and Python will stuff that onto the log record.</p>
+<p><strong>16:02</strong> · Then just update your formatter to pull in those extra attributes and now any extras will appear in our JSON.</p>
+<p><strong>16:10</strong> · Here's the {"x": "hello"}.</p>
+<h3 id="custom-filter">Custom filter<a class="headerlink" href="#custom-filter" title="Permanent link">&para;</a></h3>
+<p><strong>16:13</strong> · If you're getting too many logs and you'd like finer control over which ones to drop, then you might need a filter.</p>
+<p><strong>16:20</strong> · The process of creating a custom filter is very similar to creating a custom formatter.</p>
+<p><strong>16:24</strong> · Inherit from the built-in Filter, then define your own override of the "filter" function.</p>
+<p><strong>16:29</strong> · Given a record, you return a bool to indicate whether or not that record should be processed.</p>
+<p><strong>16:33</strong> · So this non-error filter does kind of the opposite of setting the level to "INFO".</p>
+<p><strong>16:38</strong> · Setting the level to "INFO" would mean that you would only keep messages that were "INFO", "WARNING", "ERROR", "CRITICAL", but setting this non-error filter would give you "DEBUG" and "INFO" instead.</p>
+<p><strong>16:49</strong> · You can also alter the record here, like if you wanted to censor private data or return an altered copy.</p>
+<p><strong>16:55</strong> · I'm not going to deal with filters for the rest of the video, but here's a homework exercise.</p>
+<p><strong>16:58</strong> · Using this non-error filter, create a logging config that shows normal messages to stdout, but error messages to stderr.</p>
+<p><strong>17:07</strong> · You're going to need the filter to prevent duplicates.</p>
+<h3 id="a-glaring-flaw">A glaring flaw<a class="headerlink" href="#a-glaring-flaw" title="Permanent link">&para;</a></h3>
+<p><strong>17:11</strong> · Okay okay, surely there are no more glaring flaws with this logging setup, right?</p>
+<p><strong>17:17</strong> · At the risk of using a forbidden word in Python let's talk about performance.</p>
+<p><strong>17:22</strong> · By its very nature, calling a log function results in I/O.</p>
+<p><strong>17:26</strong> · If a user makes a request to my web app and that results in 10 log messages, I don't want to add 10 round-trips worth of time to my logging service before I respond to my user.</p>
+<p><strong>17:37</strong> · But currently that's what will happen because all logging calls are synchronous and blocking.</p>
+<p><strong>17:42</strong> · The solution? Use a QueueHandler to log off the main thread.</p>
+<h3 id="log-off-the-main-thread-with-queuehandler">Log off the main thread with QueueHandler<a class="headerlink" href="#log-off-the-main-thread-with-queuehandler" title="Permanent link">&para;</a></h3>
+<p><strong>17:47</strong> · Collecting log data isn't the slow part.</p>
+<p><strong>17:49</strong> · The slow part is sending it wherever it needs to go.</p>
+<p><strong>17:53</strong> · A queue handler stores your log records in a queue without blocking, while an associated queue listener accepts those messages and passes them off to other handlers in another thread.</p>
+<p><strong>18:04</strong> · In order to configure this, create a new queue handler in your config.</p>
+<p><strong>18:08</strong> · The class is "logging.handlers.QueueHandler" and then it accepts another list of handlers.</p>
+<p><strong>18:13</strong> · These are the handlers that it dispatches to, so basically take the handlers that you had on the root handler before, put them here and then change the queue handler to be your only handler on the root.</p>
+<p><strong>18:26</strong> · This "respect_handler_level" for for some reason is by default false, which results in the behavior of sending every message to every handler regardless of log level, so yeah, that's probably not what we want.</p>
+<p><strong>18:38</strong> · I'm going to set this to true so that it does what you expect.</p>
+<p><strong>18:42</strong> · There's one more thing we need to handle over here in the main file, which is that because the queue handler is starting a thread, that's not something that's going to happen automatically.</p>
+<p><strong>18:50</strong> · When we set up our logging we need to manually start that thread.</p>
+<p><strong>18:54</strong> · We accomplish this by getting the queue handler by name and then if it exists we start its listener's thread.</p>
+<p><strong>19:01</strong> · We also register an atexit callback in order to call the listener's stop method and shut it down gracefully when the program ends.</p>
+<p><strong>19:08</strong> · Alternatively, if you want to keep all the work inside the config, you could also subclass the queue handler class and make it do this stuff in its init.</p>
+<h3 id="success">Success!<a class="headerlink" href="#success" title="Permanent link">&para;</a></h3>
+<p><strong>19:16</strong> · And success!</p>
+<p><strong>19:17</strong> · We finally have a high quality, parsable, multi-destination, non-blocking logging setup for our Python application.</p>
+<p><strong>19:24</strong> · Feels good, doesn't it?</p>
+<h3 id="library-logging">Library logging?<a class="headerlink" href="#library-logging" title="Permanent link">&para;</a></h3>
+<p><strong>19:27</strong> · But notice I said logging for your "application" not your "library".</p>
+<p><strong>19:32</strong> · Application authors know who their users are and know what kind of logs that they want to see.</p>
+<p><strong>19:37</strong> · Whereas if you're writing library code, you don't know who your end user is and you don't know what kind of logs they want.</p>
+<p><strong>19:44</strong> · Conclusion: for library code, don't configure logging.</p>
+<p><strong>19:49</strong> · You can still use logging, create loggers, log messages and other important events.</p>
+<p><strong>19:53</strong> · Just don't configure it with dictConfig or any other config.</p>
+<p><strong>19:58</strong> · Let applications do the configuring.</p>
+<p><strong>20:00</strong> · If a user doesn't configure logging, the default and expected behavior is that warnings and above will be printed to stderr.</p>
+<p><strong>20:08</strong> · If a user of your library does configure logging, then don't interfere with what they want by adding handlers formatters or other things that they're not aware of.</p>
+<h3 id="logging4p">logging4p<a class="headerlink" href="#logging4p" title="Permanent link">&para;</a></h3>
+<p><strong>20:16</strong> · Finally, do you remember log4j?</p>
+<p><strong>20:19</strong> · It's an extremely popular logging library for Java that had a 0-day vulnerability wreak havoc and cause absolute pandemonium in the business world as thousands of large products and services with millions or billions of users instantly became vulnerable to an easy-to-do remote arbitrary code execution vulnerability.</p>
+<p><strong>20:37</strong> · At the heart of the vulnerability was a combination of logging user input, combined with a plugin that allowed loading remote data as Java object data.</p>
+<p><strong>20:46</strong> · Anyway here's Python's "makeLogRecord" function that can be used to create log records manually.</p>
+<p><strong>20:51</strong> · For example "from a pickled event received over the wire".</p>
+<p><strong>20:56</strong> · I'm not saying this is actively vulnerable.</p>
+<p><strong>20:59</strong> · but in-case "logging4p" becomes a thing ... called it.</p>
+<h3 id="thanks">Thanks!<a class="headerlink" href="#thanks" title="Permanent link">&para;</a></h3>
+<p><strong>21:02</strong> · Thanks for watching, and remember my company is mCoding.</p>
+<p><strong>21:05</strong> · So if you're still not satisfied with your logging or other project setup, maybe we can help.</p>
+<p><strong>21:09</strong> · Don't be afraid to reach out.</p>
+<p><strong>21:12</strong> · Did you know that this entire channel is funded completely by donations?</p>
+<p><strong>21:15</strong> · So huge thanks to everyone on patreon and direct contributors for supporting the channel.</p>
+<p><strong>21:20</strong> · If you'd like to support the channel go to patreon.com/mcoding and sign up.</p>
+<p><strong>21:28</strong> · Don't forget to subscribe and slap that like button an odd number of times.</p>
+<p><strong>21:29</strong> · See you in the next one.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

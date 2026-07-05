@@ -1,0 +1,4154 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive reference guide for built-in and advanced Python collections, their use cases, and time complexities.">
+      
+      
+      
+        <link rel="canonical" href="https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Collections%20Explained/">
+      
+      
+        <link rel="prev" href="../Python%20Core%20Concepts/">
+      
+      
+        <link rel="next" href="../Python%20Async%20Threading%20Multiprocessing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Python Collections Cheat Sheet - SWE Field Guide Chops</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#python-collections-data-structures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SWE Field Guide Chops" class="md-header__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SWE Field Guide Chops
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Python Collections Cheat Sheet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/azm-gh/SWE-Field-Guide-Chops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SWE Field Guide Chops" class="md-nav__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SWE Field Guide Chops
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/azm-gh/SWE-Field-Guide-Chops" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithms & Data Structures
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithms & Data Structures
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Two-pointer Approach
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Two-pointer Approach
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/move-zeroes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Move Zeroes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/two-sum-ii-input-array-is-sorted/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Two Sum II
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/3sum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3Sum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../two-pointer-approach/container-with-most-water/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container With Most Water
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Sliding Window Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Sliding Window Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/maximum-average-subarray-i/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maximum Average Subarray I
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/longest-substring-without-repeating-characters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Substring (No Repeat)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/longest-repeating-character-replacement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Repeating Char Replacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sliding-window-pattern/minimum-window-substring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minimum Window Substring
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Modified Binary Search Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Modified Binary Search Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/search-in-rotated-sorted-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search in Rotated Sorted Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/koko-eating-bananas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Koko Eating Bananas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/search-a-2d-matrix/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Search a 2D Matrix
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modified-binary-search-pattern/capacity-to-ship-packages-within-d-days/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capacity To Ship Packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Hashmaps and Hash Sets
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. Hashmaps and Hash Sets
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/find-the-duplicate-number/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find the Duplicate Number
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/two-sum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Two Sum
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/majority-element/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Majority Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/group-anagrams/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Group Anagrams
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hashmaps-and-hash-sets/longest-consecutive-sequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Consecutive Sequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Monotonic Stack / Prefix Sum Pattern
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Monotonic Stack / Prefix Sum Pattern
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/find-pivot-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find Pivot Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subarray Sum Equals K
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../monotonic-stack-prefix-sum-pattern/range-sum-query/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Range Sum Query
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. BFS and DFS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. BFS and DFS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/maximum-depth-of-binary-tree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maximum Depth of Binary Tree
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/number-of-islands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Number of Islands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/course-schedule/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course Schedule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bfs-and-dfs/word-ladder/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Word Ladder
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Memoization (Dynamic Programming)
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Memoization (Dynamic Programming)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/climbing-stairs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Climbing Stairs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/coin-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Coin Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/longest-common-subsequence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longest Common Subsequence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../memoization-dynamic-programming/house-robber/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    House Robber
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Heap or Priority Queue
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Heap or Priority Queue
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/last-stone-weight/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Last Stone Weight
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/kth-largest-element-in-an-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kth Largest Element
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../heap-priority-queue/top-k-frequent-elements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Top K Frequent Elements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DS and Algorithms Quest
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DS and Algorithms Quest
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_2" id="__nav_2_9_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Array 1
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Array 1
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/concatenation-of-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concatenation of Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/shuffle-the-array/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shuffle the Array
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_1/max-consecutive-ones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Max Consecutive Ones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9_3" id="__nav_2_9_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Array 2
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Array 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/set-mismatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Set Mismatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/smaller-numbers-than-current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Smaller Numbers Than Current
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds-and-algorithms-quest/array_2/find-disappeared-numbers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Find Disappeared Numbers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Core%20Concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Core Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Collections Explained
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Collections Explained
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-built-in-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Built-in Collections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-collections-collections-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Advanced Collections (collections module)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Advanced Collections (collections module)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deque-double-ended-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 deque (Double-Ended Queue)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗝️ defaultdict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧮 Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namedtuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏷️ namedtuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-time-complexity-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Time Complexity Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-priority-queue-binary-heap-heapq-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Priority Queue / Binary Heap (heapq module)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Priority Queue / Binary Heap (heapq module)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Functions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-heap-vs-max-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Min-Heap vs. Max-Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Min-Heap vs. Max-Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-force-a-max-heap-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to force a Max-Heap in Python:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-binary-heap-vs-binary-search-tree-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Binary Heap vs. Binary Search Tree (BST)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Binary Heap vs. Binary Search Tree (BST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rules-of-a-binary-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rules of a Binary Heap:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-vs-binary-search-tree-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap vs. Binary Search Tree (BST)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-binary-search-trees-bst-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Binary Search Trees (BST) in Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Binary Search Trees (BST) in Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-alternatives-for-sorted-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Alternatives for Sorted Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-are-search-trees-used-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where are Search Trees used in practice?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-time-complexity-intuition-on-vs-olog-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Time Complexity Intuition: $O(n)$ vs. $O(\log n)$
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Time Complexity Intuition: $O(n)$ vs. $O(\log n)$">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spotting-on-linear-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spotting $O(n)$ (Linear Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spotting-olog-n-logarithmic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spotting $O(\log n)$ (Logarithmic Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-confusion-two-pointer-vs-binary-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Common Confusion: Two-Pointer vs. Binary Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-interview-guide-priority-queue-vs-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Interview Guide: Priority Queue vs. Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Interview Guide: Priority Queue vs. Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-core-distinction-adt-vs-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Core Distinction: ADT vs. Data Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-how-else-could-you-build-a-priority-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How else could you build a Priority Queue?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-key-heap-properties-to-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Heap Properties to Memorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-big-o-complexity-cheat-sheet-for-interviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Big-O Complexity Cheat Sheet for Interviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-what-about-a-binary-tree-is-it-an-adt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What about a Binary Tree? Is it an ADT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-adt-vs-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary: ADT vs. Data Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mapping-adts-to-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Mapping ADTs to Data Structures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-the-tree-family-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. The Tree Family Hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. The Tree Family Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-general-tree-the-root-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. General Tree (The Root Concept)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-binary-tree-a-child-of-general-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Binary Tree (A child of General Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-binary-search-tree-bst-a-child-of-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Binary Search Tree / BST (A child of Binary Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binary-heap-a-child-of-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Binary Heap (A child of Binary Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Async%20Threading%20Multiprocessing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Async Threading Multiprocessing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Dependency%20Injection%20Guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Dependency Injection Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20self%20and%20Instance%20Methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python self and Instance Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Iterators%20and%20Generators/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Iterators and Generators
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Binary%20Search%20Template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Binary Search Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Python%20Logging%20Best%20Practices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Logging Best Practices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FastAPI%20Pydantic%20Schema%20Validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI Pydantic Schema Validation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FastAPI%20for%20AI%20Projects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FastAPI for AI Projects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    System Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../system-design/high-level-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    High Level Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-built-in-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Built-in Collections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-advanced-collections-collections-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Advanced Collections (collections module)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Advanced Collections (collections module)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deque-double-ended-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 deque (Double-Ended Queue)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defaultdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🗝️ defaultdict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧮 Counter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namedtuple" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🏷️ namedtuple
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-time-complexity-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Time Complexity Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-priority-queue-binary-heap-heapq-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Priority Queue / Binary Heap (heapq module)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Priority Queue / Binary Heap (heapq module)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Functions:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-heap-vs-max-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Min-Heap vs. Max-Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Min-Heap vs. Max-Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-to-force-a-max-heap-in-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to force a Max-Heap in Python:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Use Cases:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-binary-heap-vs-binary-search-tree-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Binary Heap vs. Binary Search Tree (BST)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Binary Heap vs. Binary Search Tree (BST)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-rules-of-a-binary-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Rules of a Binary Heap:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heap-vs-binary-search-tree-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heap vs. Binary Search Tree (BST)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-binary-search-trees-bst-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Binary Search Trees (BST) in Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Binary Search Trees (BST) in Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-alternatives-for-sorted-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Alternatives for Sorted Data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-are-search-trees-used-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where are Search Trees used in practice?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-time-complexity-intuition-on-vs-olog-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Time Complexity Intuition: $O(n)$ vs. $O(\log n)$
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Time Complexity Intuition: $O(n)$ vs. $O(\log n)$">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spotting-on-linear-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spotting $O(n)$ (Linear Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spotting-olog-n-logarithmic-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spotting $O(\log n)$ (Logarithmic Time)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-confusion-two-pointer-vs-binary-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Common Confusion: Two-Pointer vs. Binary Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-interview-guide-priority-queue-vs-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Interview Guide: Priority Queue vs. Heap
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Interview Guide: Priority Queue vs. Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-the-core-distinction-adt-vs-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. The Core Distinction: ADT vs. Data Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-how-else-could-you-build-a-priority-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. How else could you build a Priority Queue?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-key-heap-properties-to-memorize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Key Heap Properties to Memorize
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-big-o-complexity-cheat-sheet-for-interviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Big-O Complexity Cheat Sheet for Interviews
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-what-about-a-binary-tree-is-it-an-adt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. What about a Binary Tree? Is it an ADT?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-adt-vs-data-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary: ADT vs. Data Structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mapping-adts-to-data-structures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Mapping ADTs to Data Structures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-the-tree-family-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. The Tree Family Hierarchy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. The Tree Family Hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-general-tree-the-root-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. General Tree (The Root Concept)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-binary-tree-a-child-of-general-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Binary Tree (A child of General Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-binary-search-tree-bst-a-child-of-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Binary Search Tree / BST (A child of Binary Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-binary-heap-a-child-of-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Binary Heap (A child of Binary Tree)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="python-collections-data-structures">Python Collections &amp; Data Structures<a class="headerlink" href="#python-collections-data-structures" title="Permanent link">&para;</a></h1>
+<p>Python offers a variety of built-in collections and specialized structures in the <code>collections</code> module. Selecting the right collection optimizes both memory usage and runtime performance.</p>
+<hr />
+<h2 id="1-built-in-collections">1. Built-in Collections<a class="headerlink" href="#1-built-in-collections" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Collection</th>
+<th style="text-align: left;">Syntax</th>
+<th style="text-align: left;">Ordered?</th>
+<th style="text-align: left;">Mutable?</th>
+<th style="text-align: left;">Unique Only?</th>
+<th style="text-align: left;">Best Used For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>List</strong></td>
+<td style="text-align: left;"><code>[a, b]</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><strong>Yes</strong></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Standard dynamic arrays, sequential data.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tuple</strong></td>
+<td style="text-align: left;"><code>(a, b)</code></td>
+<td style="text-align: left;">Yes</td>
+<td style="text-align: left;"><strong>No</strong></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;">Immutable records (e.g., GPS coordinates <code>(lat, lon)</code>), dictionary keys.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Set</strong></td>
+<td style="text-align: left;"><code>{a, b}</code></td>
+<td style="text-align: left;">No</td>
+<td style="text-align: left;"><strong>Yes</strong></td>
+<td style="text-align: left;"><strong>Yes</strong></td>
+<td style="text-align: left;">Fast membership testing, deduplication, mathematical set operations.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dict</strong></td>
+<td style="text-align: left;"><code>{k: v}</code></td>
+<td style="text-align: left;">Yes*</td>
+<td style="text-align: left;"><strong>Yes</strong></td>
+<td style="text-align: left;">Keys: <strong>Yes</strong></td>
+<td style="text-align: left;">Key-value lookups, mappings, JSON-like data.</td>
+</tr>
+</tbody>
+</table>
+<p><em>*Note: Dictionaries maintain insertion order starting in Python 3.7+.</em></p>
+<hr />
+<h2 id="2-advanced-collections-collections-module">2. Advanced Collections (<code>collections</code> module)<a class="headerlink" href="#2-advanced-collections-collections-module" title="Permanent link">&para;</a></h2>
+<p>For specialized tasks, Python’s built-in <code>collections</code> module provides optimized data structures:</p>
+<h3 id="deque-double-ended-queue">🔄 <code>deque</code> (Double-Ended Queue)<a class="headerlink" href="#deque-double-ended-queue" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>What it is</strong>: A list-like container optimized for fast appends and pops from both ends.</li>
+<li><strong>Why use it</strong>: Inserting or removing elements at the beginning of a standard Python list takes $O(n)$ time because all subsequent elements must be shifted in memory. A <code>deque</code> does this in $O(1)$ time.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="s2">&quot;task1&quot;</span><span class="p">,</span> <span class="s2">&quot;task2&quot;</span><span class="p">])</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;task3&quot;</span><span class="p">)</span>      <span class="c1"># O(1) append to right</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="s2">&quot;task0&quot;</span><span class="p">)</span>  <span class="c1"># O(1) append to left</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">first</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>    <span class="c1"># O(1) pop from left (&quot;task0&quot;)</span>
+</code></pre></div></li>
+</ul>
+<h3 id="defaultdict">🗝️ <code>defaultdict</code><a class="headerlink" href="#defaultdict" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>What it is</strong>: A dictionary subclass that calls a factory function to supply missing values automatically.</li>
+<li><strong>Why use it</strong>: Prevents tedious <code>KeyError</code> checking when initializing empty structures like lists or counters inside dictionary keys.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Automatically initializes missing keys with an empty list</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">grouped_data</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">grouped_data</span><span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">)</span> <span class="c1"># No need to check if &quot;users&quot; key exists first!</span>
+</code></pre></div></li>
+</ul>
+<h3 id="counter">🧮 <code>Counter</code><a class="headerlink" href="#counter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>What it is</strong>: A dictionary subclass for counting hashable objects.</li>
+<li><strong>Why use it</strong>: Cleanly counts occurrences of elements in collections without manual loops.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s2">&quot;abracadabra&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># Counter({&#39;a&#39;: 5, &#39;b&#39;: 2, &#39;r&#39;: 2, &#39;c&#39;: 1, &#39;d&#39;: 1})</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># [(&#39;a&#39;, 5), (&#39;b&#39;, 2)]</span>
+</code></pre></div></li>
+</ul>
+<h3 id="namedtuple">🏷️ <code>namedtuple</code><a class="headerlink" href="#namedtuple" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>What it is</strong>: Factory function for creating tuple subclasses with named fields.</li>
+<li><strong>Why use it</strong>: Adds readability to tuples by allowing field access by name instead of index, without the memory overhead of a full class.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">namedtuple</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">Point</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Point&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">])</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">p</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">22</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>  <span class="c1"># 11 22</span>
+</code></pre></div></li>
+</ul>
+<hr />
+<h2 id="3-time-complexity-reference">3. Time Complexity Reference<a class="headerlink" href="#3-time-complexity-reference" title="Permanent link">&para;</a></h2>
+<p>Choosing the correct data structure can mean the difference between an algorithm running in milliseconds vs. minutes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Operation</th>
+<th style="text-align: left;">List</th>
+<th style="text-align: left;">Deque</th>
+<th style="text-align: left;">Set</th>
+<th style="text-align: left;">Dict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Append / Push (Right)</strong></td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Insert / Pop (Left)</strong></td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Membership Check (<code>x in col</code>)</strong></td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$ (Keys)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Access by Index (<code>col[i]</code>)</strong></td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">N/A</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Delete Element</strong></td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-priority-queue-binary-heap-heapq-module">4. Priority Queue / Binary Heap (<code>heapq</code> module)<a class="headerlink" href="#4-priority-queue-binary-heap-heapq-module" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>What it is</strong>: An implementation of the binary heap algorithm (specifically a min-heap) that operates directly on standard Python lists.</li>
+<li><strong>Why use it</strong>: Allows you to retrieve the smallest element in constant time $O(1)$, and insert/delete elements in logarithmic time $O(\log n)$. Useful for priority queues, schedule tracking, or finding the $k$ smallest/largest items.</li>
+</ul>
+<h3 id="core-functions">Core Functions:<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">heap</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># O(log n) - Push item onto the heap</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">heap</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">smallest</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">heap</span><span class="p">)</span> <span class="c1"># O(log n) - Pop the smallest item (5)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># heap[0] is always the smallest element in O(1) time</span>
+</code></pre></div>
+<h3 id="min-heap-vs-max-heap">Min-Heap vs. Max-Heap<a class="headerlink" href="#min-heap-vs-max-heap" title="Permanent link">&para;</a></h3>
+<p>Python's <code>heapq</code> is hardcoded as a <strong>Min-Heap</strong> (root is always the minimum). </p>
+<h4 id="how-to-force-a-max-heap-in-python">How to force a Max-Heap in Python:<a class="headerlink" href="#how-to-force-a-max-heap-in-python" title="Permanent link">&para;</a></h4>
+<p>To get a Max-Heap (where the root is always the maximum), you <strong>multiply your numbers by <code>-1</code></strong> when pushing, and multiply by <code>-1</code> again when popping:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">max_heap</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># We want to push 10, then 5, then 20</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">max_heap</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">max_heap</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">max_heap</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># Pop returns the smallest stored value (-20), which negated is the max value (20)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="n">largest</span> <span class="o">=</span> <span class="o">-</span><span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">max_heap</span><span class="p">)</span>  <span class="c1"># Returns 20</span>
+</code></pre></div></p>
+<h4 id="use-cases">Use Cases:<a class="headerlink" href="#use-cases" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>Min-Heap</strong>: Schedulers (earliest time first), Dijkstra's Shortest Path algorithm (shortest distance first), merging multiple sorted streams.</li>
+<li><strong>Max-Heap</strong>: Priority queues where higher numbers represent higher priority (e.g., job processing queues), finding the $k$ smallest items in a large stream, or calculating streaming medians.</li>
+</ul>
+<hr />
+<h2 id="5-binary-heap-vs-binary-search-tree-bst">5. Binary Heap vs. Binary Search Tree (BST)<a class="headerlink" href="#5-binary-heap-vs-binary-search-tree-bst" title="Permanent link">&para;</a></h2>
+<p>A Binary Heap is not the same as a standard Binary Search Tree:</p>
+<h3 id="the-rules-of-a-binary-heap">The Rules of a Binary Heap:<a class="headerlink" href="#the-rules-of-a-binary-heap" title="Permanent link">&para;</a></h3>
+<p>It is <strong>not</strong> about the sum of the nodes. It is a strict inequality comparison:
+1.  <strong>The Heap Property</strong>: 
+    *   <strong>Min-Heap</strong>: <code>Parent &lt;= Left Child</code> AND <code>Parent &lt;= Right Child</code>.
+    *   <strong>Max-Heap</strong>: <code>Parent &gt;= Left Child</code> AND <code>Parent &gt;= Right Child</code>.
+    *   <em>Note</em>: There is no left-to-right sorting. The left child can be larger or smaller than the right child.
+2.  <strong>The Shape Property</strong>: The tree must be <strong>complete</strong> (all levels filled except possibly the bottom level, which is filled left-to-right). This completeness is why a heap can be represented as a simple flat list (<code>heap[i]</code>) without using pointer nodes.</p>
+<h3 id="heap-vs-binary-search-tree-bst">Heap vs. Binary Search Tree (BST)<a class="headerlink" href="#heap-vs-binary-search-tree-bst" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Binary Heap</th>
+<th style="text-align: left;">Binary Search Tree (BST)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Ordering Rule</strong></td>
+<td style="text-align: left;">Parent compared to children (no left vs right rule).</td>
+<td style="text-align: left;">Left Child &lt; Parent &lt; Right Child.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Search Time</strong></td>
+<td style="text-align: left;">$O(n)$ (not optimized for arbitrary search).</td>
+<td style="text-align: left;">$O(\log n)$ (optimized to find any element).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Min/Max Retrieval</strong></td>
+<td style="text-align: left;">$O(1)$ (always at the root).</td>
+<td style="text-align: left;">$O(\log n)$ (traverse to the far left/right).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Memory Representation</strong></td>
+<td style="text-align: left;">Flat array/list (no pointer overhead).</td>
+<td style="text-align: left;">Node objects linked by pointers.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-binary-search-trees-bst-in-practice">6. Binary Search Trees (BST) in Practice<a class="headerlink" href="#6-binary-search-trees-bst-in-practice" title="Permanent link">&para;</a></h2>
+<p>Unlike heaps, Python does <strong>not</strong> have a built-in BST module (like a Red-Black Tree or AVL Tree) in its standard library. </p>
+<h3 id="python-alternatives-for-sorted-data">Python Alternatives for Sorted Data<a class="headerlink" href="#python-alternatives-for-sorted-data" title="Permanent link">&para;</a></h3>
+<p>If you need sorted data structures in Python, you use these standard or third-party alternatives:
+1.  <strong><code>bisect</code> module (Standard Library)</strong>: Keeps a standard Python <code>list</code> sorted using binary search. Note that inserting an item is still $O(n)$ because shifting list elements in memory is slow.
+2.  <strong><code>sortedcontainers</code> (Third-party library)</strong>: A popular, fast, pure-Python library that provides <code>SortedList</code>, <code>SortedDict</code>, and <code>SortedSet</code> structures.</p>
+<p><em>Note: Other languages have built-in BSTs. For example, Java's <code>TreeMap</code>/<code>TreeSet</code> and C++'s <code>std::map</code>/<code>std::set</code> are built using self-balancing Red-Black BSTs.</em></p>
+<h3 id="where-are-search-trees-used-in-practice">Where are Search Trees used in practice?<a class="headerlink" href="#where-are-search-trees-used-in-practice" title="Permanent link">&para;</a></h3>
+<p>Multi-way self-balancing search trees (generalizations of BSTs called <strong>B-Trees</strong> and <strong>B+ Trees</strong>) are the backbone of modern computer systems:</p>
+<ol>
+<li><strong>Database Indexes</strong>: Databases like PostgreSQL, MySQL, and SQLite use B-Trees to index tables. If you search for users with <code>age &gt; 30</code>, the database uses a search tree to find matching records in $O(\log n)$ time instead of scanning every row in the database ($O(n)$).</li>
+<li><strong>File Systems</strong>: Operating system file systems (like NTFS on Windows, ext4 on Linux, and APFS on macOS) use B-Trees to map directory names and file paths to physical sectors on your hard drive/SSD.</li>
+<li><strong>Range Queries</strong>: Unlike hash tables (dictionaries), which cannot find ranges efficiently, search trees keep keys in sorted order. This makes it extremely fast to run queries like: <em>"Find all items valued between $10 and $50."</em></li>
+</ol>
+<hr />
+<h2 id="7-time-complexity-intuition-on-vs-olog-n">7. Time Complexity Intuition: $O(n)$ vs. $O(\log n)$<a class="headerlink" href="#7-time-complexity-intuition-on-vs-olog-n" title="Permanent link">&para;</a></h2>
+<p>Understanding how to spot these two complexities in code is crucial for algorithm design:</p>
+<h3 id="1-spotting-on-linear-time">1. Spotting $O(n)$ (Linear Time)<a class="headerlink" href="#1-spotting-on-linear-time" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>The Rule</strong>: You must look at (or process) <strong>every single element</strong> in the input dataset.</li>
+<li><strong>If input doubles</strong>: The number of execution steps doubles.</li>
+<li><strong>What it looks like in code</strong>:<ul>
+<li>Simple loops: <code>for item in database:</code> or <code>while i &lt; len(lst): i += 1</code>.</li>
+<li>Sequential search on unsorted data: <code>if target in my_list:</code>.</li>
+<li>Shifting elements: <code>my_list.insert(0, val)</code> (because Python must touch and move every element to the right by one slot).</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-spotting-olog-n-logarithmic-time">2. Spotting $O(\log n)$ (Logarithmic Time)<a class="headerlink" href="#2-spotting-olog-n-logarithmic-time" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>The Rule</strong>: At each step, the algorithm <strong>divides the remaining work in half</strong> (or by another constant fraction). It never looks at the vast majority of elements.</li>
+<li><strong>If input doubles</strong>: The number of steps increases by <strong>exactly one</strong> extra step.</li>
+<li><strong>What it looks like in code</strong>:<ul>
+<li><strong>Dividing loops</strong>: The loop variable is divided or multiplied at each iteration, rather than incremented:
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>  <span class="c1"># Discarding half the problem at every step</span>
+</code></pre></div></li>
+<li><strong>Binary Search</strong>: Checking the middle element of a sorted list, then ignoring either the entire left half or right half.</li>
+<li><strong>Tree Traversals (Heaps &amp; BSTs)</strong>: Starting at the root and moving down to a leaf. Because a balanced tree has a height of roughly $\log_2(n)$, moving from the top to the bottom takes at most $\log_2(n)$ steps. (This is why <code>heapq.heappush</code> and <code>heapq.heappop</code> are $O(\log n)$).</li>
+</ul>
+</li>
+</ul>
+<h3 id="common-confusion-two-pointer-vs-binary-search">⚠️ Common Confusion: Two-Pointer vs. Binary Search<a class="headerlink" href="#common-confusion-two-pointer-vs-binary-search" title="Permanent link">&para;</a></h3>
+<p>While both techniques use two pointers (<code>left</code> and <code>right</code> or <code>low</code> and <code>high</code>), their time complexities are different:</p>
+<ul>
+<li><strong>Standard Two-Pointer</strong> (e.g., Two Sum on sorted array, Container with Most Water): <strong>$O(n)$</strong><ul>
+<li><em>Why</em>: At each step, pointers move by exactly <strong>one index</strong> (<code>left += 1</code> or <code>right -= 1</code>). The total distance the pointers cover is $n$, meaning you inspect elements linearly.</li>
+</ul>
+</li>
+<li><strong>Binary Search</strong>: <strong>$O(\log n)$</strong><ul>
+<li><em>Why</em>: At each step, you jump to the <strong>midpoint</strong> (<code>mid = (left + right) // 2</code>) and discard half of the search range. The distance between the pointers shrinks exponentially, not linearly.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="8-interview-guide-priority-queue-vs-heap">8. Interview Guide: Priority Queue vs. Heap<a class="headerlink" href="#8-interview-guide-priority-queue-vs-heap" title="Permanent link">&para;</a></h2>
+<p>If an interviewer asks you about heaps or priority queues, here is the exact terminology and distinction you should present:</p>
+<h3 id="1-the-core-distinction-adt-vs-data-structure">1. The Core Distinction: ADT vs. Data Structure<a class="headerlink" href="#1-the-core-distinction-adt-vs-data-structure" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Priority Queue is an Abstract Data Type (ADT)</strong>: It is a <em>logical specification</em>. It describes <strong>what</strong> the collection does, not <em>how</em> it does it. It specifies that elements have priorities, and you can add elements and pop the one with the highest priority.</li>
+<li><strong>Heap is a Concrete Data Structure</strong>: It is a <em>physical implementation</em>. It is the most common and efficient way to build/implement a Priority Queue.</li>
+</ul>
+<blockquote>
+<p><strong>Analogy</strong>: A "Car" is an abstract concept (it gets you from A to B). A "Tesla Model 3" is a concrete implementation of a car. A Priority Queue is the car; a Heap is the Tesla.</p>
+</blockquote>
+<h3 id="2-how-else-could-you-build-a-priority-queue">2. How else could you build a Priority Queue?<a class="headerlink" href="#2-how-else-could-you-build-a-priority-queue" title="Permanent link">&para;</a></h3>
+<p>If asked if a Heap is the <em>only</em> way to build a Priority Queue, explain these options to show deep understanding:
+*   <strong>Unsorted List</strong>: Push is $O(1)$ (just append). Pop is $O(n)$ (must search the list for the highest priority).
+*   <strong>Sorted List</strong>: Push is $O(n)$ (must find slot and shift elements). Pop is $O(1)$ (just pop from the end).
+*   <strong>Binary Search Tree (BST)</strong>: Push is $O(\log n)$. Pop is $O(\log n)$. (But has pointer overhead).
+*   <strong>Binary Heap</strong>: Push is $O(\log n)$. Pop is $O(\log n)$. <strong>(Winner)</strong>: No pointer overhead (stored in a list) and very low constant factors in performance.</p>
+<h3 id="3-key-heap-properties-to-memorize">3. Key Heap Properties to Memorize<a class="headerlink" href="#3-key-heap-properties-to-memorize" title="Permanent link">&para;</a></h3>
+<p>If asked "What is a Heap?", define it using two characteristics:
+1.  <strong>Shape Property (Complete Binary Tree)</strong>: Every level is filled, except possibly the last level, which is filled from left to right. This allows the tree to be stored in a standard flat list/array without pointers.
+2.  <strong>Heap Property</strong>: 
+    *   <em>Min-Heap</em>: Parent node is $\le$ children.
+    *   <em>Max-Heap</em>: Parent node is $\ge$ children.</p>
+<h3 id="4-big-o-complexity-cheat-sheet-for-interviews">4. Big-O Complexity Cheat Sheet for Interviews<a class="headerlink" href="#4-big-o-complexity-cheat-sheet-for-interviews" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Insertion (<code>heappush</code>)</strong>: $O(\log n)$</li>
+<li><strong>Extract Min/Max (<code>heappop</code>)</strong>: $O(\log n)$</li>
+<li><strong>Peek Min/Max (<code>heap[0]</code>)</strong>: $O(1)$</li>
+<li><strong>Create Heap from Array (<code>heapify</code>)</strong>: <strong>$O(n)$</strong> (Crucial interview detail: converting a list to a heap in-place is linear $O(n)$ time, not $O(n \log n)$!).</li>
+</ul>
+<h3 id="5-what-about-a-binary-tree-is-it-an-adt">5. What about a Binary Tree? Is it an ADT?<a class="headerlink" href="#5-what-about-a-binary-tree-is-it-an-adt" title="Permanent link">&para;</a></h3>
+<p><strong>No. A Binary Tree is a Data Structure, not an ADT.</strong>
+*   A Binary Tree defines a <strong>concrete physical layout</strong> in memory: nodes containing data and pointers to a left child and a right child.
+*   You use the Binary Tree data structure to <em>implement</em> abstract data types (like a Map or Set).</p>
+<h3 id="summary-adt-vs-data-structure">Summary: ADT vs. Data Structure<a class="headerlink" href="#summary-adt-vs-data-structure" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Concept Type</th>
+<th style="text-align: left;">What it is</th>
+<th style="text-align: left;">Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Abstract Data Type (ADT)</strong></td>
+<td style="text-align: left;">The <strong>behavioral contract</strong> (what operations are supported).</td>
+<td style="text-align: left;">Queue, Stack, Priority Queue, Map/Dictionary, Set.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Data Structure</strong></td>
+<td style="text-align: left;">The <strong>physical layout</strong> in memory (how the data is arranged).</td>
+<td style="text-align: left;">Array/List, Linked List, Hash Table, Binary Tree, Heap.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-mapping-adts-to-data-structures">9. Mapping ADTs to Data Structures<a class="headerlink" href="#9-mapping-adts-to-data-structures" title="Permanent link">&para;</a></h2>
+<p>In computer science, you can implement the same logical <strong>ADT</strong> using several different physical <strong>Data Structures</strong>. The choice of data structure affects the efficiency (time complexity) of the operations:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Abstract Data Type (ADT)</th>
+<th style="text-align: left;">Implementation Data Structure</th>
+<th style="text-align: left;">Insert/Push Complexity</th>
+<th style="text-align: left;">Remove/Pop Complexity</th>
+<th style="text-align: left;">Lookup Complexity</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Stack</strong></td>
+<td style="text-align: left;">Dynamic Array (<code>list</code>)</td>
+<td style="text-align: left;">$O(1)$ amortized</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">standard Python <code>list.append()</code> / <code>list.pop()</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Singly Linked List</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Push/Pop at head.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Queue</strong></td>
+<td style="text-align: left;">Doubly Linked List / <code>deque</code></td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Efficient on both ends.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Dynamic Array (<code>list</code>)</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">N/A</td>
+<td style="text-align: left;">Slow pops due to element shifting.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Map / Dict</strong></td>
+<td style="text-align: left;">Hash Table</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">Default Python <code>dict</code>. Fastest lookup, unsorted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Balanced BST (Red-Black)</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">Java <code>TreeMap</code>. Slower than hash, but keys stay sorted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Set</strong></td>
+<td style="text-align: left;">Hash Table</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">$O(1)$ average</td>
+<td style="text-align: left;">Default Python <code>set</code>. Fastest membership checks.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Balanced BST (Red-Black)</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">Java <code>TreeSet</code>. Elements stay sorted.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Priority Queue</strong></td>
+<td style="text-align: left;">Binary Heap</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(\log n)$</td>
+<td style="text-align: left;">$O(1)$ (Peek)</td>
+<td style="text-align: left;">Python <code>heapq</code>. Best overall priority queue choice.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Unsorted Array</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">Fast insertion, slow deletion.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Sorted Array</td>
+<td style="text-align: left;">$O(n)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">$O(1)$</td>
+<td style="text-align: left;">Very slow input, fast extraction.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-the-tree-family-hierarchy">10. The Tree Family Hierarchy<a class="headerlink" href="#10-the-tree-family-hierarchy" title="Permanent link">&para;</a></h2>
+<p>To clear up any confusion, here is how the different tree concepts inherit from one another, from the most generic to the most specialized:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>graph TD
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    A[1. General Tree] --&gt;|Constraint: Max 2 children per node| B[2. Binary Tree]
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    B --&gt;|Constraint: Sorted Left &lt; Parent &lt; Right| C[3. Binary Search Tree - BST]
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    B --&gt;|Constraints: Min/Max Parent-Child order + Complete shape| D[4. Binary Heap]
+</code></pre></div>
+<h3 id="1-general-tree-the-root-concept">1. General Tree (The Root Concept)<a class="headerlink" href="#1-general-tree-the-root-concept" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition</strong>: A collection of nodes connected by edges, with one root.</li>
+<li><strong>Rules</strong>: Nodes can have <strong>any number of children</strong> (0, 1, 5, or 100). No cycles.</li>
+<li><strong>Representation</strong>: Node objects containing a list of child pointers.</li>
+</ul>
+<h3 id="2-binary-tree-a-child-of-general-tree">2. Binary Tree (A child of General Tree)<a class="headerlink" href="#2-binary-tree-a-child-of-general-tree" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition</strong>: A tree where nodes are restricted in count.</li>
+<li><strong>Rules</strong>: Every node has <strong>at most 2 children</strong> (Left and Right).</li>
+<li><strong>Ordering</strong>: None. Values can be completely random.</li>
+<li><strong>Representation</strong>: Node objects containing <code>left</code> and <code>right</code> pointers.</li>
+</ul>
+<h3 id="3-binary-search-tree-bst-a-child-of-binary-tree">3. Binary Search Tree / BST (A child of Binary Tree)<a class="headerlink" href="#3-binary-search-tree-bst-a-child-of-binary-tree" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition</strong>: A binary tree specialized for <strong>searching</strong>.</li>
+<li><strong>Rules</strong>: <ol>
+<li><code>Left Subtree &lt; Parent</code></li>
+<li><code>Right Subtree &gt; Parent</code></li>
+</ol>
+</li>
+<li><strong>Shape constraint</strong>: None. If it gets unbalanced (e.g. inserting 1, 2, 3, 4 in order), it can look like a straight line (a linked list), degrading search performance to $O(n)$.</li>
+<li><strong>Representation</strong>: Node objects with pointers.</li>
+</ul>
+<h3 id="4-binary-heap-a-child-of-binary-tree">4. Binary Heap (A child of Binary Tree)<a class="headerlink" href="#4-binary-heap-a-child-of-binary-tree" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Definition</strong>: A binary tree specialized for <strong>getting the Min or Max quickly</strong>.</li>
+<li><strong>Rules</strong>:<ol>
+<li><strong>Heap Property</strong>: <code>Parent &lt;= Children</code> (Min-Heap) or <code>Parent &gt;= Children</code> (Max-Heap). <em>No left-to-right sorting rule.</em></li>
+<li><strong>Completeness (Shape Property)</strong>: All levels must be filled completely, left-to-right. No gaps.</li>
+</ol>
+</li>
+<li><strong>Representation</strong>: A <strong>flat list/array</strong> (e.g., <code>[1, 5, 3, 10, 9]</code>). Pointers are unnecessary because the completeness guarantees mathematical index relationships:<ul>
+<li>Left child of index <code>i</code> is at <code>2i + 1</code>.</li>
+<li>Right child of index <code>i</code> is at <code>2i + 2</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
