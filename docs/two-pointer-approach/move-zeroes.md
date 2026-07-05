@@ -1,7 +1,6 @@
 # Move Zeroes
 
 **LeetCode:** [https://leetcode.com/problems/move-zeroes/](https://leetcode.com/problems/move-zeroes/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/move-zeroes](https://algomaster.io/animations/dsa/move-zeroes)
 
 ## Intuition
@@ -55,4 +54,3 @@ To do this efficiently in-place, you use two pointers:
   * **Scanning a Valuable Package (Non-Zero)**: The Scanner finds a valuable package. To move it forward, the Scanner swaps this package with the package at the Organizer's position (which is currently occupied by a zero or is the same position).
   * **Advancing the Organizer**: Since the Organizer's spot has now been successfully filled with a valuable package, the Organizer steps forward to the next spot (`left += 1`).
 * **Result**: As the Scanner finishes traversing the belt, all valuable items have been shifted forward in order, and all empty boxes (zeroes) have been naturally swapped/pushed to the back.
-

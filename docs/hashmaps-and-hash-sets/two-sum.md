@@ -1,7 +1,6 @@
 # Two Sum
 
 **LeetCode:** [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/two-sum](https://algomaster.io/animations/dsa/two-sum)
 
 ## Intuition

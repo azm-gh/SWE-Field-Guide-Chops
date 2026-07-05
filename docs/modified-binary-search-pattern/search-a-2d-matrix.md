@@ -1,7 +1,6 @@
 # Search a 2D Matrix
 
 **LeetCode:** [https://leetcode.com/problems/search-a-2d-matrix/](https://leetcode.com/problems/search-a-2d-matrix/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/search-a-2d-matrix](https://algomaster.io/animations/dsa/search-a-2d-matrix)
 
 ## Intuition

@@ -199,7 +199,7 @@ def extract_code_blocks(filepath):
 def generate_problem_page(pattern_name, problem_folder, problem_title, leetcode_url, algomaster_url=""):
     """Generate a markdown page for a problem."""
     # Find the python file
-    pattern_path = os.path.join(BASE, pattern_name)
+    pattern_path = os.path.join(BASE, "Algorithms & Data Structures", pattern_name)
     py_files = [f for f in os.listdir(os.path.join(pattern_path, problem_folder)) if f.endswith(".py")]
     if not py_files:
         return None
@@ -273,7 +273,7 @@ def generate_problem_page(pattern_name, problem_folder, problem_title, leetcode_
 def main():
     # Generate overview pages and problem pages for each pattern
     for pattern_name, (doc_folder, _) in PATTERNS.items():
-        pattern_path = os.path.join(BASE, pattern_name)
+        pattern_path = os.path.join(BASE, "Algorithms & Data Structures", pattern_name)
         doc_path = os.path.join(DOCS, doc_folder)
 
         if not os.path.isdir(pattern_path):

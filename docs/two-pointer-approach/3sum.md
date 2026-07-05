@@ -1,7 +1,6 @@
 # 3Sum (threesome)
 
 **LeetCode:** [https://leetcode.com/problems/3sum/](https://leetcode.com/problems/3sum/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/3Sum](https://algomaster.io/animations/dsa/3Sum)
 
 ## Intuition
@@ -76,4 +75,3 @@ To find all unique combinations of three balanced members:
   * **Too Positive (total > 0)**: The team is overall too positive. The Right Scout moves backward to find a candidate with a lower, less positive skill level (`right -= 1`).
   * **Perfect Balance (total == 0)**: You found a perfect trio! You record the team.
 * **Moving On and Avoiding Echoes**: After finding a match, both scouts step inwards (`left += 1`, `right -= 1`). If the new candidates they stand on have the same skill levels as the ones they just selected, they keep sliding past them to avoid recording duplicate teams.
-

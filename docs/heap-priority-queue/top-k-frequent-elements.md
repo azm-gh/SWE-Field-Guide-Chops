@@ -1,7 +1,6 @@
 # Top K Frequent Elements
 
 **LeetCode:** [https://leetcode.com/problems/top-k-frequent-elements/](https://leetcode.com/problems/top-k-frequent-elements/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/top-k-frequent-elements](https://algomaster.io/animations/dsa/top-k-frequent-elements)
 
 ## Intuition

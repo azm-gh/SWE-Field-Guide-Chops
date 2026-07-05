@@ -1,7 +1,6 @@
 # Last Stone Weight
 
 **LeetCode:** [https://leetcode.com/problems/last-stone-weight/](https://leetcode.com/problems/last-stone-weight/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/last-stone-weight](https://algomaster.io/animations/dsa/last-stone-weight)
 
 ## Intuition

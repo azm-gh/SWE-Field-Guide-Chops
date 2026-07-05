@@ -1,7 +1,6 @@
 # House Robber
 
 **LeetCode:** [https://leetcode.com/problems/house-robber/](https://leetcode.com/problems/house-robber/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/house-robber](https://algomaster.io/animations/dsa/house-robber)
 
 ## Intuition

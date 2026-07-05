@@ -1,7 +1,6 @@
 # Number of Islands
 
 **LeetCode:** [https://leetcode.com/problems/number-of-islands/](https://leetcode.com/problems/number-of-islands/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/number-of-islands](https://algomaster.io/animations/dsa/number-of-islands)
 
 ## Intuition

@@ -1,7 +1,6 @@
 # Subarray Sum Equals K
 
 **LeetCode:** [https://leetcode.com/problems/subarray-sum-equals-k/](https://leetcode.com/problems/subarray-sum-equals-k/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/subarray-sum-equals-k](https://algomaster.io/animations/dsa/subarray-sum-equals-k)
 
 ## Intuition

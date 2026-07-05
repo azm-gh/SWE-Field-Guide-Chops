@@ -1,7 +1,6 @@
 # Longest Consecutive Sequence
 
 **LeetCode:** [https://leetcode.com/problems/longest-consecutive-sequence/](https://leetcode.com/problems/longest-consecutive-sequence/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/longest-consecutive-sequence](https://algomaster.io/animations/dsa/longest-consecutive-sequence)
 
 ## Intuition

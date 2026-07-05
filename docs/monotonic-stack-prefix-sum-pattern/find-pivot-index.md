@@ -1,7 +1,6 @@
 # Find Pivot Index
 
 **LeetCode:** [https://leetcode.com/problems/find-pivot-index/](https://leetcode.com/problems/find-pivot-index/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/find-pivot-index](https://algomaster.io/animations/dsa/find-pivot-index)
 
 ## Intuition

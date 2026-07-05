@@ -1,7 +1,6 @@
 # Kth Largest Element in an Array
 
 **LeetCode:** [https://leetcode.com/problems/kth-largest-element-in-an-array/](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/kth-largest-element-in-an-array](https://algomaster.io/animations/dsa/kth-largest-element-in-an-array)
 
 ## Intuition

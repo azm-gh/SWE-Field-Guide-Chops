@@ -1,7 +1,6 @@
 # Find the Duplicate Number
 
 **LeetCode:** [https://leetcode.com/problems/find-the-duplicate-number/](https://leetcode.com/problems/find-the-duplicate-number/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/find-the-duplicate-number](https://algomaster.io/animations/dsa/find-the-duplicate-number)
 
 ## Intuition

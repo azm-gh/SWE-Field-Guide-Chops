@@ -1,7 +1,6 @@
 # Coin Change
 
 **LeetCode:** [https://leetcode.com/problems/coin-change/](https://leetcode.com/problems/coin-change/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/coin-change](https://algomaster.io/animations/dsa/coin-change)
 
 ## Intuition

@@ -1,7 +1,6 @@
 # Koko Eating Bananas (Coco)
 
 **LeetCode:** [https://leetcode.com/problems/koko-eating-bananas/](https://leetcode.com/problems/koko-eating-bananas/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/koko-eating-bananas](https://algomaster.io/animations/dsa/koko-eating-bananas)
 
 ## Intuition

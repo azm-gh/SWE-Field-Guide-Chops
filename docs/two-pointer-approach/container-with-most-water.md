@@ -1,7 +1,6 @@
 # Container With Most Water
 
 **LeetCode:** [https://leetcode.com/problems/container-with-most-water/](https://leetcode.com/problems/container-with-most-water/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/container-with-most-water](https://algomaster.io/animations/dsa/container-with-most-water)
 
 ## Intuition
@@ -58,4 +57,3 @@ You want to find the combination of two beams that holds the absolute maximum vo
   * **Keep the Taller Beam**: If you move the pointer of the taller beam, you gain nothing. Even if you find a super tall beam inside, the water level is still bottlenecked by the shorter beam you kept, and since width shrank, the total volume will definitely be smaller.
   * **Discard the Shorter Beam**: Your only hope of holding more water is to find a beam taller than your current bottleneck. Therefore, you must move the pointer pointing to the **shorter** beam inward (`left += 1` if the left is shorter, or `right -= 1` if the right is shorter), hoping to land on a taller support.
 * **Conclusion**: By always sacrificing the shorter support, you navigate the trade-off between shrinking width and potential height gains, finding the maximum volume in a single pass.
-

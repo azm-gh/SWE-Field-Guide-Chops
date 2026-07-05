@@ -1,7 +1,6 @@
 # Longest Common Subsequence
 
 **LeetCode:** [https://leetcode.com/problems/longest-common-subsequence/](https://leetcode.com/problems/longest-common-subsequence/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/longest-common-subsequence](https://algomaster.io/animations/dsa/longest-common-subsequence)
 
 ## Intuition

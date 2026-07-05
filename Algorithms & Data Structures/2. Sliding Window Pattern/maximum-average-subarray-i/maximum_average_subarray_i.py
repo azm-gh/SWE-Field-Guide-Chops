@@ -34,3 +34,16 @@ def find_max_average_optimized(nums: List[int], k: int) -> float:
         window_sum += nums[i] - nums[i - k]
         max_sum = max(max_sum, window_sum)
     return max_sum / k
+
+
+# #### Analogy: The "Bus Passengers" Analogy
+# Imagine a bus that can hold exactly `k` passengers (our fixed window size). As the bus drives along a road (the array of numbers), people stand in a line.
+# 
+# To find the segment of `k` consecutive people with the highest average weight, we use a rolling calculation:
+# 
+# * **The First Bus Load**: We load the first `k` people onto the bus at the starting terminal (`nums[:k]`). We sum up their weights. This is our initial record to beat.
+# * **Driving Forward**: At each subsequent stop along the road, one new person is waiting to get on the bus (`nums[i]`), and the person who has been on the bus the longest must exit the bus (`nums[i - k]`).
+# * **Updating the Total (O(1) updates)**: Instead of weighing all `k` people on the bus from scratch at every stop, we simply take our current total weight, add the weight of the new person getting on, and subtract the weight of the person getting off: `window_sum += incoming - outgoing`.
+# * **Recording the Record**: We compare this new total weight to our all-time record (`max_sum = max(max_sum, window_sum)`).
+# * **The Final Average**: After driving to the end of the line, we take the highest total weight found and divide it by `k` to get the maximum average weight.
+

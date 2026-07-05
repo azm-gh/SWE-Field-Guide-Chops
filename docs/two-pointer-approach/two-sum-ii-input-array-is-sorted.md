@@ -1,7 +1,6 @@
 # Two Sum II - Input Array Is Sorted
 
 **LeetCode:** [https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/two-sum-ii-input-array-is-sorted](https://algomaster.io/animations/dsa/two-sum-ii-input-array-is-sorted)
 
 ## Intuition
@@ -55,4 +54,3 @@ Here is how you would use your fingers to find the perfect two items:
 * **Too Cheap (curr < target)**: If your total is, say, $80, you need to spend more money. Moving your right finger is useless because it would only point to something cheaper, lowering your total even more. The only logical move is to slide your left finger up to the next slightly more expensive item (`left += 1`).
 * **Too Expensive (curr > target)**: If your total is $120, you went over budget. Moving your left finger to a more expensive item will only make things worse. You have to lower your total, so you slide your right finger down to a slightly cheaper item (`right -= 1`).
 * **The Perfect Match (curr == target)**: You hit exactly $100! You return the item numbers (adding +1 because the problem asks for 1-based indexing instead of 0-based).
-

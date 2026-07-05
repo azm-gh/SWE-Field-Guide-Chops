@@ -1,7 +1,6 @@
 # Majority Element
 
 **LeetCode:** [https://leetcode.com/problems/majority-element/](https://leetcode.com/problems/majority-element/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/majority-element](https://algomaster.io/animations/dsa/majority-element)
 
 ## Intuition

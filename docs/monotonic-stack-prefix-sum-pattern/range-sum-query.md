@@ -1,7 +1,6 @@
 # Range Sum Query
 
 **LeetCode:** [https://leetcode.com/problems/range-sum-query-immutable/](https://leetcode.com/problems/range-sum-query-immutable/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/range-sum-query-immutable](https://algomaster.io/animations/dsa/range-sum-query-immutable)
 
 ## Intuition

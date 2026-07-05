@@ -1,7 +1,6 @@
 # Search in Rotated Sorted Array
 
 **LeetCode:** [https://leetcode.com/problems/search-in-rotated-sorted-array/](https://leetcode.com/problems/search-in-rotated-sorted-array/)
-
 **AlgoMaster Animation:** [https://algomaster.io/animations/dsa/search-in-rotated-sorted-array](https://algomaster.io/animations/dsa/search-in-rotated-sorted-array)
 
 ## Intuition
