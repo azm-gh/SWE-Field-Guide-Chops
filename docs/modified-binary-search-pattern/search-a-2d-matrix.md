@@ -46,3 +46,11 @@ def search_matrix_optimized(matrix: List[List[int]], target: int) -> bool:
             right = mid - 1
     return False
 ```
+
+#### Analogy: The "Cinema Seat Finder" Analogy
+Imagine a cinema with rows of seats, each row sorted by seat number from left to right. The rows themselves are ordered — row 2 starts where row 1 ends (no gaps). An usher has a single ticket with a seat number and needs to find it fast.
+
+* **The Flattened Row (1D Mapping)**: Instead of walking row by row, the usher treats all seats as one continuous line from 1 to total seats. This is the key insight — the 2D grid is really one sorted list in disguise.
+* **The Row & Col Calculation**: Given a "virtual index" `mid` in the flattened line, the usher computes `row = mid // (seats_per_row)` and `col = mid % (seats_per_row)` to locate the exact physical seat.
+* **Standard Binary Search**: Once flattened conceptually, it's textbook binary search — compare the seat number at `mid` with the target, eliminate the wrong half, and repeat.
+* **Result**: You find the target in O(log(m\*n)) time, never needing to scan every seat.

@@ -47,3 +47,11 @@ def search_optimized(nums: List[int], target: int) -> int:
                 right = mid - 1
     return -1
 ```
+
+#### Analogy: The "Broken Bookshelf" Analogy
+Imagine a long bookshelf where all the books are sorted by title. Someone picked up a random chunk of the shelf and moved it to the front, so now the shelf is rotated — there's a "break point" where the sequence resets.
+
+* **The Break Point**: This is where the sorted order jumps (e.g., `[5, 6, 1, 2, 3]` — the break is after 6). Only one side of any midpoint contains this break.
+* **The Sorted Half Trick**: Pick the middle book. The left side (from `left` to `mid`) will be fully sorted if `nums[left] <= nums[mid]`. Otherwise, the right side is fully sorted. You always know exactly which half is reliably ordered.
+* **Narrowing the Search**: If the left half is sorted and your target falls within its range, search left. Otherwise search right. Same logic applies symmetrically for a sorted right half.
+* **Result**: Despite the rotation, you still narrow the search by half each step — giving O(log n) time, just like standard binary search.

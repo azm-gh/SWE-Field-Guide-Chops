@@ -46,3 +46,11 @@ def min_eating_speed_optimized(piles: List[int], h: int) -> int:
             left = mid + 1
     return left
 ```
+
+#### Analogy: The "Buffet Speed Check" Analogy
+Imagine you have a huge pile of sliced bread to toast for a party, and only one old toaster that can fit a certain number of slices per batch. You have a strict deadline.
+
+* **The Toast Capacity (Speed k)**: This is your candidate eating speed — how many bananas Koko can eat per hour. In our analogy, it's how many bread slices you can toast per batch in the toaster.
+* **The Piles (Stacks of Bread)**: Each pile is a different size (number of bananas). You must finish one entire pile before moving to the next, just like you must toast all the slices in one stack before starting the next.
+* **The Feasibility Check**: For a given toaster capacity, you calculate how many toaster cycles each bread stack requires. If the total cycles fit within your available time (h hours), the capacity is feasible — try a smaller one.
+* **Binary Search on Answer**: Instead of testing every possible toaster capacity from 1 to the biggest stack, you binary search the range. If a mid-sized capacity works, look lower to find the minimal viable toaster; if not, you need a bigger toaster.

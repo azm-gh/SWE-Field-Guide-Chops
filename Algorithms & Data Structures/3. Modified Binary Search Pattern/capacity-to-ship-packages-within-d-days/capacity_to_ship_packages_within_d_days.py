@@ -48,3 +48,12 @@ def ship_within_days_optimized(weights: List[int], days: int) -> int:
         else:
             left = mid + 1
     return left
+
+
+# #### Analogy: The "Moving Truck" Analogy
+# You're moving apartments. You have a stack of boxes in a fixed order (you can't rearrange them — each box must be loaded in sequence), and you need to transport them using a rental truck. The truck has a weight limit, and you have a limited number of trips allowed.
+# 
+# * **The Truck Capacity (Candidate Mid)**: This is the maximum weight the truck can carry per trip. We need to find the minimum capacity that still gets the job done in the allowed trips.
+# * **Fixed Order Loading**: Boxes must be loaded in sequence — you can't skip a heavy box and come back for it later. If the next box exceeds the remaining capacity, you seal the truck and send it off, then start a new trip with that box.
+# * **Feasibility Check**: For a given truck capacity, simulate loading: start with trip 1, add boxes until the next one would exceed capacity, then increment the trip counter and keep going. If total trips ≤ allowed days, this capacity works.
+# * **Binary Search on Answer**: The minimum possible capacity is the heaviest single box. The maximum is the sum of all boxes (one trip). Binary search this range to find the smallest capacity that fits within the trip limit — just like finding the smallest viable truck.
