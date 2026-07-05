@@ -2,7 +2,7 @@ import os
 import re
 import ast
 
-BASE = r"C:\SWE-Field-Guide-Chops"
+BASE = os.path.dirname(os.path.abspath(__file__))
 DOCS = os.path.join(BASE, "docs")
 
 # Map: pattern folder name -> (doc folder, pattern number, short_pattern_folder)
@@ -173,12 +173,24 @@ def extract_intuition(filepath):
     return ""
 
 
+def extract_analogy(filepath):
+    """Extract the analogy comment block."""
+    with open(filepath, encoding="utf-8") as f:
+        content = f.read()
+    match = re.search(r'^(# #### Analogy:.*?)(?=\Z)', content, re.MULTILINE | re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return ""
+
+
 def extract_code_blocks(filepath):
     """Extract function/class definitions with their code."""
     with open(filepath, encoding="utf-8") as f:
         content = f.read()
     
-    # Remove the docstring and intuition comment to get just code
+    # Remove analogy block if present so it doesn't get included in the code blocks
+    content = re.sub(r'\n+# #### Analogy:.*$', '', content, flags=re.MULTILINE | re.DOTALL)
+    
     # Find all top-level function/class definitions
     blocks = re.findall(r'^(?:def |class ).*?(?=^(?:def |class )|\Z)', content, re.MULTILINE | re.DOTALL)
     return [b.strip() for b in blocks]
@@ -199,6 +211,7 @@ def generate_problem_page(pattern_name, problem_folder, problem_title, leetcode_
         full_code = f.read()
     
     intuition = extract_intuition(filepath)
+    analogy = extract_analogy(filepath)
     code_blocks = extract_code_blocks(filepath)
     
     # Build the markdown
@@ -247,6 +260,12 @@ def generate_problem_page(pattern_name, problem_folder, problem_title, leetcode_
             lines.append(block)
             lines.append("```")
             lines.append("")
+            
+            if (label == "Optimized" or "optimized" in name) and analogy:
+                # Remove the '# ' prefix from analogy lines
+                for al in analogy.split("\n"):
+                    lines.append(al.replace("# ", "", 1) if al.startswith("# ") else al)
+                lines.append("")
     
     return "\n".join(lines)
 

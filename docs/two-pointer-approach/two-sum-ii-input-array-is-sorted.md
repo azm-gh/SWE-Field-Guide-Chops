@@ -44,3 +44,15 @@ def two_sum_optimized(numbers: List[int], target: int) -> List[int]:
             right -= 1
     return []
 ```
+
+#### Analogy: The "Gift Card" Analogy
+Imagine you have a gift card for exactly $100 (your target), and you are looking at a catalog of items where the prices are listed in order from cheapest to most expensive (your sorted numbers array). You have to buy exactly two items, and you want to use exactly the full $100.
+
+Here is how you would use your fingers to find the perfect two items:
+
+* **The Starting Point**: You place your left finger on the absolute cheapest item (index 0) and your right finger on the absolute most expensive item (index `len(numbers) - 1`).
+* **Checking the Price (curr)**: You add the prices under your two fingers together.
+* **Too Cheap (curr < target)**: If your total is, say, $80, you need to spend more money. Moving your right finger is useless because it would only point to something cheaper, lowering your total even more. The only logical move is to slide your left finger up to the next slightly more expensive item (`left += 1`).
+* **Too Expensive (curr > target)**: If your total is $120, you went over budget. Moving your left finger to a more expensive item will only make things worse. You have to lower your total, so you slide your right finger down to a slightly cheaper item (`right -= 1`).
+* **The Perfect Match (curr == target)**: You hit exactly $100! You return the item numbers (adding +1 because the problem asks for 1-based indexing instead of 0-based).
+
