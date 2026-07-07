@@ -4,6 +4,8 @@ Solutions to software engineering problems organized by **algorithmic pattern**.
 
 ## Algorithms & Data Structures
 
+[**0. High Level Taxonomy**](high-level-taxonomy/index.md) — bird's-eye view of all algorithmic patterns
+
 ### 1. Two-pointer Approach
 
 Move Zeroes · Two Sum II · 3Sum · Container With Most Water

@@ -26,6 +26,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Algorithms & Data Structures:
+    - 0. High Level Taxonomy: high-level-taxonomy/index.md
     - 1. Two-pointer Approach:
       - Overview: two-pointer-approach/index.md
       - Move Zeroes: two-pointer-approach/move-zeroes.md
