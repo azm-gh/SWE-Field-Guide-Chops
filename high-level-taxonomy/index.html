@@ -513,10 +513,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#kadanes-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kadane's Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#subsequence-dp-lis" class="md-nav__link">
     <span class="md-ellipsis">
       
         Subsequence DP (LIS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometric-dimensions-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometric Dimensions DP
       
     </span>
   </a>
@@ -3267,10 +3289,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#kadanes-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kadane's Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#subsequence-dp-lis" class="md-nav__link">
     <span class="md-ellipsis">
       
         Subsequence DP (LIS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geometric-dimensions-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometric Dimensions DP
       
     </span>
   </a>
@@ -3387,25 +3431,39 @@
 <h3 id="two-pointers">Two Pointers<a class="headerlink" href="#two-pointers" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Opposite Direction</strong> — finding pairs in sorted arrays</li>
+<li><em>Two Sum II (LC 167), 3Sum (LC 15), Container With Most Water (LC 11)</em></li>
 <li><strong>Same Direction / Fast &amp; Slow</strong> — detecting cycles, removing duplicates</li>
+<li><em>Linked List Cycle (LC 141), Move Zeroes (LC 283), Find Duplicate Number (LC 287)</em></li>
 </ul>
 <h3 id="sliding-window">Sliding Window<a class="headerlink" href="#sliding-window" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Fixed Window</strong> — max sum of contiguous subarray of size K</li>
+<li><em>Maximum Average Subarray I (LC 643)</em></li>
 <li><strong>Dynamic Window</strong> — longest substring without repeating characters</li>
+<li><em>Longest Substring Without Repeating Characters (LC 3), Minimum Window Substring (LC 76)</em></li>
+<li><strong>O(1) Management</strong> — optimize window validity check from O(N) to O(1) using a <code>matched</code> counter</li>
+<li><em>Permutation in String (LC 567), Find All Anagrams in a String (LC 438)</em></li>
 </ul>
 <h3 id="prefix-sum">Prefix Sum<a class="headerlink" href="#prefix-sum" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Static Arrays</strong> — range sum queries</li>
+<li><em>Range Sum Query (LC 303)</em></li>
 <li><strong>Combined with Hashmaps</strong> — subarray sum equals K</li>
+<li><em>Subarray Sum Equals K (LC 560)</em></li>
 </ul>
 <hr />
 <h2 id="2-core-data-structure-optimizations">2. Core Data Structure Optimizations<a class="headerlink" href="#2-core-data-structure-optimizations" title="Permanent link">&para;</a></h2>
 <p>Leveraging data structures to trade space for time or maintain order on the fly.</p>
 <ul>
 <li><strong>Hashmaps &amp; Hash Sets</strong> — frequency counting, duplicates, O(1) lookups</li>
+<li><em>Two Sum (LC 1), Group Anagrams (LC 49), Longest Consecutive Sequence (LC 128)</em></li>
 <li><strong>Monotonic Stacks &amp; Queues</strong> — next greater/smaller element, 2D-to-1D compressions</li>
+<li><strong>2D-to-1D Compression</strong> — collapse grid rows into histograms, then use monotonic stack vertically<ul>
+<li><em>Largest Rectangle in Histogram (LC 84), Maximal Rectangle (LC 85), Count Submatrices With All Ones (LC 1504)</em></li>
+</ul>
+</li>
 <li><strong>Heaps / Priority Queues</strong> — Top K, Kth largest/smallest, merging K sorted lists</li>
+<li><em>Kth Largest Element (LC 215), Top K Frequent Elements (LC 347)</em></li>
 <li><strong>Linked Lists</strong> — reversals, cycle detection, merging</li>
 </ul>
 <hr />
@@ -3413,12 +3471,12 @@
 <p>Ordering data, overlapping data, and finding targets in restricted spaces.</p>
 <h3 id="modified-binary-search">Modified Binary Search<a class="headerlink" href="#modified-binary-search" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Search Space</strong> — rotated sorted arrays</li>
-<li><strong>Answer Space</strong> — Koko eating bananas</li>
+<li><strong>Search Space</strong> — rotated sorted arrays (LC 33), search a 2D matrix (LC 74)</li>
+<li><strong>Answer Space</strong> — Koko eating bananas (LC 875), ship packages (LC 1011)</li>
 </ul>
 <h3 id="intervals">Intervals<a class="headerlink" href="#intervals" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>Merging</strong> — merge overlapping intervals</li>
+<li><strong>Merging</strong> — merge overlapping intervals (LC 56)</li>
 <li><strong>Insertions &amp; Intersections</strong></li>
 </ul>
 <h3 id="cyclic-sort">Cyclic Sort<a class="headerlink" href="#cyclic-sort" title="Permanent link">&para;</a></h3>
@@ -3428,30 +3486,48 @@
 <p>Nodes and edges.</p>
 <ul>
 <li><strong>BFS</strong> — level-order traversal, shortest path in unweighted graphs</li>
+<li><em>Word Ladder (LC 127), Number of Islands (LC 200)</em></li>
 <li><strong>DFS</strong> — pathfinding, exploring possibilities, connected components</li>
-<li><strong>Topological Sort</strong> — dependencies and DAGs (course schedules)</li>
+<li><em>Maximum Depth of Binary Tree (LC 104), Number of Islands (LC 200)</em></li>
+<li><strong>Topological Sort</strong> — dependencies and DAGs</li>
+<li><em>Course Schedule (LC 207)</em></li>
 <li><strong>Union Find (Disjoint Set)</strong> — grouping, cycle detection in undirected graphs</li>
-<li><strong>Backtracking</strong> — permutations, subsets, combinations (N-Queens, Sudoku)</li>
+<li><strong>Backtracking</strong> — permutations, subsets, combinations</li>
+<li><em>Subsets (LC 78), N-Queens (LC 51)</em></li>
 </ul>
 <hr />
 <h2 id="5-dynamic-programming-state-choice">5. Dynamic Programming (State &amp; Choice)<a class="headerlink" href="#5-dynamic-programming-state-choice" title="Permanent link">&para;</a></h2>
 <h3 id="1d-dp-fibonacci-sequence">1D DP / Fibonacci Sequence<a class="headerlink" href="#1d-dp-fibonacci-sequence" title="Permanent link">&para;</a></h3>
-<p>State relies on 1 or 2 previous states (Climbing Stairs, House Robber).</p>
+<p>State relies on 1 or 2 previous states.
+- <em>Climbing Stairs (LC 70), House Robber (LC 198), Min Cost Climbing Stairs (LC 746)</em></p>
+<h3 id="kadanes-algorithm">Kadane's Algorithm<a class="headerlink" href="#kadanes-algorithm" title="Permanent link">&para;</a></h3>
+<p>Maximum subarray in one pass.
+- <em>Maximum Subarray (LC 53), Maximum Product Subarray (LC 152)</em></p>
 <h3 id="subsequence-dp-lis">Subsequence DP (LIS)<a class="headerlink" href="#subsequence-dp-lis" title="Permanent link">&para;</a></h3>
-<p>Longest Increasing Subsequence, often optimized with Binary Search.</p>
+<p>Longest Increasing Subsequence, O(N log N) with Binary Search.
+- <em>Longest Increasing Subsequence (LC 300), Largest Divisible Subset (LC 368), Mountain Array (LC 1671)</em></p>
+<h3 id="geometric-dimensions-dp">Geometric Dimensions DP<a class="headerlink" href="#geometric-dimensions-dp" title="Permanent link">&para;</a></h3>
+<p>Sort one dimension, run LIS on the other.
+- <em>Russian Doll Envelopes (LC 354)</em></p>
 <h3 id="string-dp">String DP<a class="headerlink" href="#string-dp" title="Permanent link">&para;</a></h3>
-<p>Longest Common Subsequence, Edit Distance, Palindromic substrings.</p>
+<p>Longest Common Subsequence, Edit Distance, Palindromic substrings.
+- <em>LCS (LC 1143), Edit Distance (LC 72), Palindromic Substrings (LC 647)</em></p>
 <h3 id="knapsack-dp">Knapsack DP<a class="headerlink" href="#knapsack-dp" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>0/1 Knapsack</strong> — take or leave, bounded capacity</li>
-<li><strong>Unbounded Knapsack</strong> — infinite supply (Coin Change)</li>
+<li><em>Partition Equal Subset Sum (LC 416), Target Sum (LC 494)</em></li>
+<li><strong>Unbounded Knapsack</strong> — infinite supply</li>
+<li><em>Coin Change (LC 322)</em></li>
 </ul>
 <h3 id="interval-dp">Interval DP<a class="headerlink" href="#interval-dp" title="Permanent link">&para;</a></h3>
-<p>Collapsing or merging elements where score depends on adjacent remaining elements (Burst Balloons).</p>
+<p>Collapsing or merging elements where score depends on adjacent remaining elements.
+- <em>Burst Balloons (LC 312)</em></p>
 <h3 id="matrix-2d-grid-dp">Matrix / 2D Grid DP<a class="headerlink" href="#matrix-2d-grid-dp" title="Permanent link">&para;</a></h3>
-<p>Pathfinding with obstacles, maximum square/rectangle.</p>
+<p>Pathfinding with obstacles, maximum square/rectangle.
+- <em>Unique Paths (LC 62), Minimum Path Sum (LC 64), Maximal Square (LC 221)</em></p>
 <h3 id="digit-dp">Digit DP<a class="headerlink" href="#digit-dp" title="Permanent link">&para;</a></h3>
-<p>Counting numbers in a range that fit a constraint, built digit-by-digit.</p>
+<p>Counting numbers in a range that fit a constraint, built digit-by-digit.
+- <em>Number of Digit One (LC 233), Numbers At Most N Given Digit Set (LC 902)</em></p>
 <h3 id="advanced-dp">Advanced DP<a class="headerlink" href="#advanced-dp" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Bitmask DP</strong> — bits to represent small state sets</li>
@@ -3460,7 +3536,8 @@
 <hr />
 <h2 id="6-greedy-math">6. Greedy &amp; Math<a class="headerlink" href="#6-greedy-math" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Greedy Algorithms</strong> — locally optimal choice at each step (Jump Game)</li>
+<li><strong>Greedy Algorithms</strong> — locally optimal choice at each step</li>
+<li><em>Jump Game (LC 55)</em></li>
 <li><strong>Math &amp; Geometry</strong> — prime factorization, modulo, 2D intersections</li>
 <li><strong>Bit Manipulation</strong> — XOR tricks, bit shifting</li>
 </ul>
