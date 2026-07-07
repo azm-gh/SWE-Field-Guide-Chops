@@ -2,242 +2,246 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/bfs-and-dfs/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/bfs-and-dfs/course-schedule/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/bfs-and-dfs/maximum-depth-of-binary-tree/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/bfs-and-dfs/number-of-islands/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/bfs-and-dfs/word-ladder/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_1/concatenation-of-array/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_1/max-consecutive-ones/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_1/shuffle-the-array/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_2/find-disappeared-numbers/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_2/set-mismatch/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_2/smaller-numbers-than-current/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/find-the-duplicate-number/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/group-anagrams/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/longest-consecutive-sequence/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/majority-element/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/hashmaps-and-hash-sets/two-sum/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/heap-priority-queue/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/heap-priority-queue/kth-largest-element-in-an-array/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/heap-priority-queue/last-stone-weight/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/heap-priority-queue/top-k-frequent-elements/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
+    </url>
+    <url>
+         <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/high-level-taxonomy/</loc>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/memoization-dynamic-programming/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/memoization-dynamic-programming/climbing-stairs/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/memoization-dynamic-programming/coin-change/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/memoization-dynamic-programming/house-robber/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/memoization-dynamic-programming/longest-common-subsequence/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/modified-binary-search-pattern/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/modified-binary-search-pattern/capacity-to-ship-packages-within-d-days/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/modified-binary-search-pattern/koko-eating-bananas/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/modified-binary-search-pattern/search-a-2d-matrix/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/modified-binary-search-pattern/search-in-rotated-sorted-array/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/monotonic-stack-prefix-sum-pattern/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/monotonic-stack-prefix-sum-pattern/find-pivot-index/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/monotonic-stack-prefix-sum-pattern/range-sum-query/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/other/relevant-links/matklad-links/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/FastAPI%20Pydantic%20Schema%20Validation/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/FastAPI%20for%20AI%20Projects/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Async%20Threading%20Multiprocessing/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Binary%20Search%20Template/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Collections%20Explained/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Core%20Concepts/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Dependency%20Injection%20Guide/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Iterators%20and%20Generators/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20Logging%20Best%20Practices/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/python/Python%20self%20and%20Instance%20Methods/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/sliding-window-pattern/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/sliding-window-pattern/longest-repeating-character-replacement/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/sliding-window-pattern/longest-substring-without-repeating-characters/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/sliding-window-pattern/maximum-average-subarray-i/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/sliding-window-pattern/minimum-window-substring/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/system-design/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/system-design/high-level-overview/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/two-pointer-approach/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/two-pointer-approach/3sum/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/two-pointer-approach/container-with-most-water/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/two-pointer-approach/move-zeroes/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
     <url>
          <loc>https://azm-gh.github.io/SWE-Field-Guide-Chops/two-pointer-approach/two-sum-ii-input-array-is-sorted/</loc>
-         <lastmod>2026-07-05</lastmod>
+         <lastmod>2026-07-07</lastmod>
     </url>
 </urlset>

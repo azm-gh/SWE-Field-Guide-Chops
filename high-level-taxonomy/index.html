@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://azm-gh.github.io/SWE-Field-Guide-Chops/ds-and-algorithms-quest/array_2/find-disappeared-numbers/">
+        <link rel="canonical" href="https://azm-gh.github.io/SWE-Field-Guide-Chops/high-level-taxonomy/">
       
       
-        <link rel="prev" href="../smaller-numbers-than-current/">
+        <link rel="prev" href="..">
       
       
-        <link rel="next" href="../../../python/Python%20Core%20Concepts/">
+        <link rel="next" href="../two-pointer-approach/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Find Disappeared Numbers - SWE Field Guide Chops</title>
+        <title>0. High Level Taxonomy - SWE Field Guide Chops</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#q3-find-all-numbers-disappeared-in-an-array" class="md-skip">
+        <a href="#high-level-taxonomy" class="md-skip">
           Skip to content
         </a>
       
@@ -92,7 +92,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="SWE Field Guide Chops" class="md-header__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+    <a href=".." title="SWE Field Guide Chops" class="md-header__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Find Disappeared Numbers
+              0. High Level Taxonomy
             
           </span>
         </div>
@@ -202,7 +202,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="SWE Field Guide Chops" class="md-nav__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
+    <a href=".." title="SWE Field Guide Chops" class="md-nav__button md-logo" aria-label="SWE Field Guide Chops" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -232,7 +232,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -305,10 +305,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../high-level-taxonomy/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    0. High Level Taxonomy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -324,6 +351,264 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-linear-traversals-arrays-strings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Linear Traversals (Arrays &amp; Strings)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Linear Traversals (Arrays &amp; Strings)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-pointers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Two Pointers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sliding Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefix Sum
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-data-structure-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Data Structure Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-search-sort-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Search, Sort &amp; Intervals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Search, Sort &amp; Intervals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modified-binary-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modified Binary Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Sort
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-relational-data-trees-graphs-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Relational Data (Trees, Graphs &amp; Matrices)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dynamic-programming-state-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Dynamic Programming (State &amp; Choice)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Dynamic Programming (State &amp; Choice)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1d-dp-fibonacci-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1D DP / Fibonacci Sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequence-dp-lis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequence DP (LIS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knapsack-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knapsack DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interval DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-2d-grid-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix / 2D Grid DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#digit-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Digit DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-greedy-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Greedy &amp; Math
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -383,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../two-pointer-approach/" class="md-nav__link">
+      <a href="../two-pointer-approach/" class="md-nav__link">
         
   
   
@@ -411,7 +696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../two-pointer-approach/move-zeroes/" class="md-nav__link">
+      <a href="../two-pointer-approach/move-zeroes/" class="md-nav__link">
         
   
   
@@ -439,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../two-pointer-approach/two-sum-ii-input-array-is-sorted/" class="md-nav__link">
+      <a href="../two-pointer-approach/two-sum-ii-input-array-is-sorted/" class="md-nav__link">
         
   
   
@@ -467,7 +752,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../two-pointer-approach/3sum/" class="md-nav__link">
+      <a href="../two-pointer-approach/3sum/" class="md-nav__link">
         
   
   
@@ -495,7 +780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../two-pointer-approach/container-with-most-water/" class="md-nav__link">
+      <a href="../two-pointer-approach/container-with-most-water/" class="md-nav__link">
         
   
   
@@ -578,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sliding-window-pattern/" class="md-nav__link">
+      <a href="../sliding-window-pattern/" class="md-nav__link">
         
   
   
@@ -606,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sliding-window-pattern/maximum-average-subarray-i/" class="md-nav__link">
+      <a href="../sliding-window-pattern/maximum-average-subarray-i/" class="md-nav__link">
         
   
   
@@ -634,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sliding-window-pattern/longest-substring-without-repeating-characters/" class="md-nav__link">
+      <a href="../sliding-window-pattern/longest-substring-without-repeating-characters/" class="md-nav__link">
         
   
   
@@ -662,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sliding-window-pattern/longest-repeating-character-replacement/" class="md-nav__link">
+      <a href="../sliding-window-pattern/longest-repeating-character-replacement/" class="md-nav__link">
         
   
   
@@ -690,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../sliding-window-pattern/minimum-window-substring/" class="md-nav__link">
+      <a href="../sliding-window-pattern/minimum-window-substring/" class="md-nav__link">
         
   
   
@@ -773,7 +1058,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modified-binary-search-pattern/" class="md-nav__link">
+      <a href="../modified-binary-search-pattern/" class="md-nav__link">
         
   
   
@@ -801,7 +1086,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modified-binary-search-pattern/search-in-rotated-sorted-array/" class="md-nav__link">
+      <a href="../modified-binary-search-pattern/search-in-rotated-sorted-array/" class="md-nav__link">
         
   
   
@@ -829,7 +1114,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modified-binary-search-pattern/koko-eating-bananas/" class="md-nav__link">
+      <a href="../modified-binary-search-pattern/koko-eating-bananas/" class="md-nav__link">
         
   
   
@@ -857,7 +1142,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modified-binary-search-pattern/search-a-2d-matrix/" class="md-nav__link">
+      <a href="../modified-binary-search-pattern/search-a-2d-matrix/" class="md-nav__link">
         
   
   
@@ -885,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../modified-binary-search-pattern/capacity-to-ship-packages-within-d-days/" class="md-nav__link">
+      <a href="../modified-binary-search-pattern/capacity-to-ship-packages-within-d-days/" class="md-nav__link">
         
   
   
@@ -968,7 +1253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/" class="md-nav__link">
         
   
   
@@ -996,7 +1281,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/find-the-duplicate-number/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/find-the-duplicate-number/" class="md-nav__link">
         
   
   
@@ -1024,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/two-sum/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/two-sum/" class="md-nav__link">
         
   
   
@@ -1052,7 +1337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/majority-element/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/majority-element/" class="md-nav__link">
         
   
   
@@ -1080,7 +1365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/group-anagrams/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/group-anagrams/" class="md-nav__link">
         
   
   
@@ -1108,7 +1393,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../hashmaps-and-hash-sets/longest-consecutive-sequence/" class="md-nav__link">
+      <a href="../hashmaps-and-hash-sets/longest-consecutive-sequence/" class="md-nav__link">
         
   
   
@@ -1191,7 +1476,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monotonic-stack-prefix-sum-pattern/" class="md-nav__link">
+      <a href="../monotonic-stack-prefix-sum-pattern/" class="md-nav__link">
         
   
   
@@ -1219,7 +1504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monotonic-stack-prefix-sum-pattern/find-pivot-index/" class="md-nav__link">
+      <a href="../monotonic-stack-prefix-sum-pattern/find-pivot-index/" class="md-nav__link">
         
   
   
@@ -1247,7 +1532,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k/" class="md-nav__link">
+      <a href="../monotonic-stack-prefix-sum-pattern/subarray-sum-equals-k/" class="md-nav__link">
         
   
   
@@ -1275,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../monotonic-stack-prefix-sum-pattern/range-sum-query/" class="md-nav__link">
+      <a href="../monotonic-stack-prefix-sum-pattern/range-sum-query/" class="md-nav__link">
         
   
   
@@ -1358,7 +1643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bfs-and-dfs/" class="md-nav__link">
+      <a href="../bfs-and-dfs/" class="md-nav__link">
         
   
   
@@ -1386,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bfs-and-dfs/maximum-depth-of-binary-tree/" class="md-nav__link">
+      <a href="../bfs-and-dfs/maximum-depth-of-binary-tree/" class="md-nav__link">
         
   
   
@@ -1414,7 +1699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bfs-and-dfs/number-of-islands/" class="md-nav__link">
+      <a href="../bfs-and-dfs/number-of-islands/" class="md-nav__link">
         
   
   
@@ -1442,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bfs-and-dfs/course-schedule/" class="md-nav__link">
+      <a href="../bfs-and-dfs/course-schedule/" class="md-nav__link">
         
   
   
@@ -1470,7 +1755,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../bfs-and-dfs/word-ladder/" class="md-nav__link">
+      <a href="../bfs-and-dfs/word-ladder/" class="md-nav__link">
         
   
   
@@ -1553,7 +1838,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../memoization-dynamic-programming/" class="md-nav__link">
+      <a href="../memoization-dynamic-programming/" class="md-nav__link">
         
   
   
@@ -1581,7 +1866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../memoization-dynamic-programming/climbing-stairs/" class="md-nav__link">
+      <a href="../memoization-dynamic-programming/climbing-stairs/" class="md-nav__link">
         
   
   
@@ -1609,7 +1894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../memoization-dynamic-programming/coin-change/" class="md-nav__link">
+      <a href="../memoization-dynamic-programming/coin-change/" class="md-nav__link">
         
   
   
@@ -1637,7 +1922,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../memoization-dynamic-programming/longest-common-subsequence/" class="md-nav__link">
+      <a href="../memoization-dynamic-programming/longest-common-subsequence/" class="md-nav__link">
         
   
   
@@ -1665,7 +1950,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../memoization-dynamic-programming/house-robber/" class="md-nav__link">
+      <a href="../memoization-dynamic-programming/house-robber/" class="md-nav__link">
         
   
   
@@ -1748,7 +2033,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../heap-priority-queue/" class="md-nav__link">
+      <a href="../heap-priority-queue/" class="md-nav__link">
         
   
   
@@ -1776,7 +2061,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../heap-priority-queue/last-stone-weight/" class="md-nav__link">
+      <a href="../heap-priority-queue/last-stone-weight/" class="md-nav__link">
         
   
   
@@ -1804,7 +2089,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../heap-priority-queue/kth-largest-element-in-an-array/" class="md-nav__link">
+      <a href="../heap-priority-queue/kth-largest-element-in-an-array/" class="md-nav__link">
         
   
   
@@ -1832,7 +2117,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../heap-priority-queue/top-k-frequent-elements/" class="md-nav__link">
+      <a href="../heap-priority-queue/top-k-frequent-elements/" class="md-nav__link">
         
   
   
@@ -1865,20 +2150,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
         
           
           <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
@@ -1899,7 +2182,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1917,7 +2200,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/" class="md-nav__link">
         
   
   
@@ -1992,7 +2275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../array_1/concatenation-of-array/" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/array_1/concatenation-of-array/" class="md-nav__link">
         
   
   
@@ -2020,7 +2303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../array_1/shuffle-the-array/" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/array_1/shuffle-the-array/" class="md-nav__link">
         
   
   
@@ -2048,7 +2331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../array_1/max-consecutive-ones/" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/array_1/max-consecutive-ones/" class="md-nav__link">
         
   
   
@@ -2081,20 +2364,18 @@
                 
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10_3" >
         
           
           <label class="md-nav__link" for="__nav_2_10_3" id="__nav_2_10_3_label" tabindex="0">
@@ -2115,7 +2396,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_10_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_10_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_10_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2133,7 +2414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../set-mismatch/" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/array_2/set-mismatch/" class="md-nav__link">
         
   
   
@@ -2161,7 +2442,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../smaller-numbers-than-current/" class="md-nav__link">
+      <a href="../ds-and-algorithms-quest/array_2/smaller-numbers-than-current/" class="md-nav__link">
         
   
   
@@ -2186,37 +2467,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Find Disappeared Numbers
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../ds-and-algorithms-quest/array_2/find-disappeared-numbers/" class="md-nav__link">
         
   
   
@@ -2232,87 +2486,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#pattern" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pattern
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#intuition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intuition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Solutions">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#find_disappeared_numbers_naive-naive" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        find_disappeared_numbers_naive — Naive
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#find_disappeared_numbers_optimized-optimized" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        find_disappeared_numbers_optimized — Optimized
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2395,7 +2568,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Core%20Concepts/" class="md-nav__link">
+      <a href="../python/Python%20Core%20Concepts/" class="md-nav__link">
         
   
   
@@ -2423,7 +2596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Collections%20Explained/" class="md-nav__link">
+      <a href="../python/Python%20Collections%20Explained/" class="md-nav__link">
         
   
   
@@ -2451,7 +2624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Async%20Threading%20Multiprocessing/" class="md-nav__link">
+      <a href="../python/Python%20Async%20Threading%20Multiprocessing/" class="md-nav__link">
         
   
   
@@ -2479,7 +2652,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Dependency%20Injection%20Guide/" class="md-nav__link">
+      <a href="../python/Python%20Dependency%20Injection%20Guide/" class="md-nav__link">
         
   
   
@@ -2507,7 +2680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20self%20and%20Instance%20Methods/" class="md-nav__link">
+      <a href="../python/Python%20self%20and%20Instance%20Methods/" class="md-nav__link">
         
   
   
@@ -2535,7 +2708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Iterators%20and%20Generators/" class="md-nav__link">
+      <a href="../python/Python%20Iterators%20and%20Generators/" class="md-nav__link">
         
   
   
@@ -2563,7 +2736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Binary%20Search%20Template/" class="md-nav__link">
+      <a href="../python/Python%20Binary%20Search%20Template/" class="md-nav__link">
         
   
   
@@ -2591,7 +2764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/Python%20Logging%20Best%20Practices/" class="md-nav__link">
+      <a href="../python/Python%20Logging%20Best%20Practices/" class="md-nav__link">
         
   
   
@@ -2619,7 +2792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/FastAPI%20Pydantic%20Schema%20Validation/" class="md-nav__link">
+      <a href="../python/FastAPI%20Pydantic%20Schema%20Validation/" class="md-nav__link">
         
   
   
@@ -2647,7 +2820,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../python/FastAPI%20for%20AI%20Projects/" class="md-nav__link">
+      <a href="../python/FastAPI%20for%20AI%20Projects/" class="md-nav__link">
         
   
   
@@ -2776,7 +2949,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../other/relevant-links/matklad-links/" class="md-nav__link">
+      <a href="../other/relevant-links/matklad-links/" class="md-nav__link">
         
   
   
@@ -2866,7 +3039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../system-design/" class="md-nav__link">
+      <a href="../system-design/" class="md-nav__link">
         
   
   
@@ -2894,7 +3067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../system-design/high-level-overview/" class="md-nav__link">
+      <a href="../system-design/high-level-overview/" class="md-nav__link">
         
   
   
@@ -2949,44 +3122,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pattern" class="md-nav__link">
+  <a href="#1-linear-traversals-arrays-strings" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pattern
+        1. Linear Traversals (Arrays &amp; Strings)
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#intuition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Intuition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solutions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solutions
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Solutions">
+    <nav class="md-nav" aria-label="1. Linear Traversals (Arrays &amp; Strings)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#find_disappeared_numbers_naive-naive" class="md-nav__link">
+  <a href="#two-pointers" class="md-nav__link">
     <span class="md-ellipsis">
       
-        find_disappeared_numbers_naive — Naive
+        Two Pointers
       
     </span>
   </a>
@@ -2994,10 +3145,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#find_disappeared_numbers_optimized-optimized" class="md-nav__link">
+  <a href="#sliding-window" class="md-nav__link">
     <span class="md-ellipsis">
       
-        find_disappeared_numbers_optimized — Optimized
+        Sliding Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prefix-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prefix Sum
       
     </span>
   </a>
@@ -3006,6 +3168,194 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core-data-structure-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Core Data Structure Optimizations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-search-sort-intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Search, Sort &amp; Intervals
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Search, Sort &amp; Intervals">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modified-binary-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Modified Binary Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cyclic-sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cyclic Sort
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-relational-data-trees-graphs-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Relational Data (Trees, Graphs &amp; Matrices)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dynamic-programming-state-choice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Dynamic Programming (State &amp; Choice)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Dynamic Programming (State &amp; Choice)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1d-dp-fibonacci-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1D DP / Fibonacci Sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#subsequence-dp-lis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequence DP (LIS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knapsack-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knapsack DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interval-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interval DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matrix-2d-grid-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrix / 2D Grid DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#digit-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Digit DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-dp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced DP
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-greedy-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Greedy &amp; Math
+      
+    </span>
+  </a>
   
 </li>
       
@@ -3029,37 +3379,91 @@
   
 
 
-<h1 id="q3-find-all-numbers-disappeared-in-an-array">Q3. Find All Numbers Disappeared in an Array<a class="headerlink" href="#q3-find-all-numbers-disappeared-in-an-array" title="Permanent link">&para;</a></h1>
-<p><strong>LeetCode:</strong> <a href="https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/">448</a></p>
-<p><strong>AlgoMaster Animation:</strong> <a href="https://algomaster.io/animations/dsa/find-all-numbers-disappeared-in-an-array">https://algomaster.io/animations/dsa/find-all-numbers-disappeared-in-an-array</a></p>
-<h2 id="pattern">Pattern<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h2>
-<p><strong>Hashmaps / Hash sets</strong> — The naive solution explicitly uses a set to track present numbers. The optimized solution uses the array itself as a hash set: by negating <code>nums[value - 1]</code>, we mark that value as "seen" without allocating extra space. This maps to the "have I seen this before?" check from the hashmap pattern, but implemented in-place.</p>
-<h2 id="intuition">Intuition<a class="headerlink" href="#intuition" title="Permanent link">&para;</a></h2>
-<p>Values are in [1, n] but some are missing. The naive approach uses a hash set of present values. The optimized approach marks visited indices in-place by negating the value at the corresponding index. After processing, indices with positive values are the missing numbers — O(1) extra space.</p>
-<h2 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h2>
-<h3 id="find_disappeared_numbers_naive-naive"><code>find_disappeared_numbers_naive</code> — Naive<a class="headerlink" href="#find_disappeared_numbers_naive-naive" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_disappeared_numbers_naive</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">present</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">if</span> <span class="n">i</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">present</span><span class="p">:</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="k">return</span> <span class="n">result</span>
-</code></pre></div>
-<h3 id="find_disappeared_numbers_optimized-optimized"><code>find_disappeared_numbers_optimized</code> — Optimized<a class="headerlink" href="#find_disappeared_numbers_optimized-optimized" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">find_disappeared_numbers_optimized</span><span class="p">(</span><span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            <span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="k">return</span> <span class="n">result</span>
-</code></pre></div>
+<h1 id="high-level-taxonomy">High Level Taxonomy<a class="headerlink" href="#high-level-taxonomy" title="Permanent link">&para;</a></h1>
+<p>A bird's-eye view of algorithmic patterns, organized by the kind of problem they solve.</p>
+<hr />
+<h2 id="1-linear-traversals-arrays-strings">1. Linear Traversals (Arrays &amp; Strings)<a class="headerlink" href="#1-linear-traversals-arrays-strings" title="Permanent link">&para;</a></h2>
+<p>Moving through linear data efficiently, optimizing O(N²) brute forces to O(N) or O(N log N).</p>
+<h3 id="two-pointers">Two Pointers<a class="headerlink" href="#two-pointers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Opposite Direction</strong> — finding pairs in sorted arrays</li>
+<li><strong>Same Direction / Fast &amp; Slow</strong> — detecting cycles, removing duplicates</li>
+</ul>
+<h3 id="sliding-window">Sliding Window<a class="headerlink" href="#sliding-window" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Fixed Window</strong> — max sum of contiguous subarray of size K</li>
+<li><strong>Dynamic Window</strong> — longest substring without repeating characters</li>
+</ul>
+<h3 id="prefix-sum">Prefix Sum<a class="headerlink" href="#prefix-sum" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Static Arrays</strong> — range sum queries</li>
+<li><strong>Combined with Hashmaps</strong> — subarray sum equals K</li>
+</ul>
+<hr />
+<h2 id="2-core-data-structure-optimizations">2. Core Data Structure Optimizations<a class="headerlink" href="#2-core-data-structure-optimizations" title="Permanent link">&para;</a></h2>
+<p>Leveraging data structures to trade space for time or maintain order on the fly.</p>
+<ul>
+<li><strong>Hashmaps &amp; Hash Sets</strong> — frequency counting, duplicates, O(1) lookups</li>
+<li><strong>Monotonic Stacks &amp; Queues</strong> — next greater/smaller element, 2D-to-1D compressions</li>
+<li><strong>Heaps / Priority Queues</strong> — Top K, Kth largest/smallest, merging K sorted lists</li>
+<li><strong>Linked Lists</strong> — reversals, cycle detection, merging</li>
+</ul>
+<hr />
+<h2 id="3-search-sort-intervals">3. Search, Sort &amp; Intervals<a class="headerlink" href="#3-search-sort-intervals" title="Permanent link">&para;</a></h2>
+<p>Ordering data, overlapping data, and finding targets in restricted spaces.</p>
+<h3 id="modified-binary-search">Modified Binary Search<a class="headerlink" href="#modified-binary-search" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Search Space</strong> — rotated sorted arrays</li>
+<li><strong>Answer Space</strong> — Koko eating bananas</li>
+</ul>
+<h3 id="intervals">Intervals<a class="headerlink" href="#intervals" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Merging</strong> — merge overlapping intervals</li>
+<li><strong>Insertions &amp; Intersections</strong></li>
+</ul>
+<h3 id="cyclic-sort">Cyclic Sort<a class="headerlink" href="#cyclic-sort" title="Permanent link">&para;</a></h3>
+<p>Sorting arrays with numbers in a given range (e.g., 1 to N).</p>
+<hr />
+<h2 id="4-relational-data-trees-graphs-matrices">4. Relational Data (Trees, Graphs &amp; Matrices)<a class="headerlink" href="#4-relational-data-trees-graphs-matrices" title="Permanent link">&para;</a></h2>
+<p>Nodes and edges.</p>
+<ul>
+<li><strong>BFS</strong> — level-order traversal, shortest path in unweighted graphs</li>
+<li><strong>DFS</strong> — pathfinding, exploring possibilities, connected components</li>
+<li><strong>Topological Sort</strong> — dependencies and DAGs (course schedules)</li>
+<li><strong>Union Find (Disjoint Set)</strong> — grouping, cycle detection in undirected graphs</li>
+<li><strong>Backtracking</strong> — permutations, subsets, combinations (N-Queens, Sudoku)</li>
+</ul>
+<hr />
+<h2 id="5-dynamic-programming-state-choice">5. Dynamic Programming (State &amp; Choice)<a class="headerlink" href="#5-dynamic-programming-state-choice" title="Permanent link">&para;</a></h2>
+<h3 id="1d-dp-fibonacci-sequence">1D DP / Fibonacci Sequence<a class="headerlink" href="#1d-dp-fibonacci-sequence" title="Permanent link">&para;</a></h3>
+<p>State relies on 1 or 2 previous states (Climbing Stairs, House Robber).</p>
+<h3 id="subsequence-dp-lis">Subsequence DP (LIS)<a class="headerlink" href="#subsequence-dp-lis" title="Permanent link">&para;</a></h3>
+<p>Longest Increasing Subsequence, often optimized with Binary Search.</p>
+<h3 id="string-dp">String DP<a class="headerlink" href="#string-dp" title="Permanent link">&para;</a></h3>
+<p>Longest Common Subsequence, Edit Distance, Palindromic substrings.</p>
+<h3 id="knapsack-dp">Knapsack DP<a class="headerlink" href="#knapsack-dp" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>0/1 Knapsack</strong> — take or leave, bounded capacity</li>
+<li><strong>Unbounded Knapsack</strong> — infinite supply (Coin Change)</li>
+</ul>
+<h3 id="interval-dp">Interval DP<a class="headerlink" href="#interval-dp" title="Permanent link">&para;</a></h3>
+<p>Collapsing or merging elements where score depends on adjacent remaining elements (Burst Balloons).</p>
+<h3 id="matrix-2d-grid-dp">Matrix / 2D Grid DP<a class="headerlink" href="#matrix-2d-grid-dp" title="Permanent link">&para;</a></h3>
+<p>Pathfinding with obstacles, maximum square/rectangle.</p>
+<h3 id="digit-dp">Digit DP<a class="headerlink" href="#digit-dp" title="Permanent link">&para;</a></h3>
+<p>Counting numbers in a range that fit a constraint, built digit-by-digit.</p>
+<h3 id="advanced-dp">Advanced DP<a class="headerlink" href="#advanced-dp" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Bitmask DP</strong> — bits to represent small state sets</li>
+<li><strong>DP on Trees</strong> — recurrences down and up tree nodes</li>
+</ul>
+<hr />
+<h2 id="6-greedy-math">6. Greedy &amp; Math<a class="headerlink" href="#6-greedy-math" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Greedy Algorithms</strong> — locally optimal choice at each step (Jump Game)</li>
+<li><strong>Math &amp; Geometry</strong> — prime factorization, modulo, 2D intersections</li>
+<li><strong>Bit Manipulation</strong> — XOR tricks, bit shifting</li>
+</ul>
 
 
 
@@ -3109,10 +3513,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
