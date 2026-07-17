@@ -32,14 +32,14 @@ def find_duplicate_naive(nums: List[int]) -> int:
 def find_duplicate_optimized(nums: List[int]) -> int:
     # Time: O(n) — Floyd's cycle detection, at most 2n steps
     # Space: O(1)
-    slow = nums[0]
-    fast = nums[0]
+    slow = 0
+    fast = 0
     while True:
         slow = nums[slow]
         fast = nums[nums[fast]]
         if slow == fast:
             break
-    slow = nums[0]
+    slow = 0
     while slow != fast:
         slow = nums[slow]
         fast = nums[fast]
